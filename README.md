@@ -15,4 +15,4 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 # AnkiCards-Flutter
-# AnkiCards-Flutter
+AnkiCardsは、フラッシュカードを作成するときに面倒なことを軽減するために開発しました。
