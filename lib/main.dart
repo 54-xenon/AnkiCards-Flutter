@@ -1,3 +1,4 @@
+import 'package:ankicards/screens/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,6 +12,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'AnkiCards',
+      home: HomePage(),
+      theme: ThemeData(
+        // テーマのカラーを指定する
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.lightBlue[100],
+          elevation: 0,
+        )
+      ),
     );
   }
 }
