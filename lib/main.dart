@@ -18,7 +18,9 @@ class MyApp extends StatelessWidget {
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.lightBlue[100],
           elevation: 0,
-        )
+        ),
+        // 背景色の指定
+        scaffoldBackgroundColor: Colors.lightBlue[50]
       ),
     );
   }

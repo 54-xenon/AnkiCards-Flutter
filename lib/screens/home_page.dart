@@ -6,7 +6,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlue[50],
       appBar: AppBar(
         title: const Text("Home"),
         elevation: 0,
@@ -17,7 +16,13 @@ class HomePage extends StatelessWidget {
           vertical: 10  //縦歩行
         ),
         child: Container(
-          // color: Colors.amber,
+          color: Colors.amber,
+          child: Column(
+            children: [
+              // フラッシュカード
+              
+            ],
+          ),
         ),
       ),
     );
