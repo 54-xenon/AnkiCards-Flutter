@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'AnkiCards',
       home: HomePage(),
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // テーマのカラーを指定する
         appBarTheme: AppBarTheme(

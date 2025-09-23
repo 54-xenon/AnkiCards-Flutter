@@ -16,3 +16,16 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 # AnkiCards-Flutter
 AnkiCardsは、フラッシュカードを作成するときに面倒なことを軽減するために開発しました。
+AnkiCardsは以下の機能をサポートします。
+＃機能
+- カードの作成、編集、削除
+- 次回の復習を通知
+- AIによるカードの作成支援
+    - 校正
+    - カードの答えの内容の補足と修正
+    - Gemini API
+    - Apple Inteligenceのfoundationモデルにも対応
+- Material3のUI
+- Googleでログイン
+- Light/Dartモード
+- 広告なし
