@@ -1,4 +1,3 @@
-import 'package:ankicards/widget/deckContainer.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -16,7 +15,7 @@ class HomePage extends StatelessWidget {
           horizontal: 10,  //横方向
           vertical: 10  //縦歩行
         ),
-        child: MyWidget(),
+        child: Container(),
       ),
     );
   }
