@@ -8,14 +8,19 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home"),
-        elevation: 0,
+        elevation: 0
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 10,  //横方向
           vertical: 10  //縦歩行
         ),
-        child: Container(),
+        child: Container(
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {},
       ),
     );
   }
