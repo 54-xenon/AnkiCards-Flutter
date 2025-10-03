@@ -3,3 +3,10 @@
 // userEmail -> ユーザのメールアドレス
 // userAcountImage -> ユーザ画面のアイコン画像
 // egistrationDate -> サービスに登録した日
+class User {
+  // プロパティ
+
+  // コンストラクタ
+  
+  // factoryコンストラクタ
+}

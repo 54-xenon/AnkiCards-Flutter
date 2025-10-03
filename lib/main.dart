@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
         ),
         // 背景色の指定
         scaffoldBackgroundColor: Colors.lightBlue[50],
-
         // floating ActionButton color
         floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: Colors.lightBlue[100],

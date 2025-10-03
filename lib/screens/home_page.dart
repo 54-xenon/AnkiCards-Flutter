@@ -20,7 +20,9 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          // カード作成画面に遷移する
+        },
       ),
     );
   }
