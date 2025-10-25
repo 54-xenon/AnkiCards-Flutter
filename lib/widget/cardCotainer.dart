@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
 class Cardcotainer extends StatelessWidget {
-  final int id;
+
   final String question;
   final String answer;
   final String explanation;
   const Cardcotainer({
     super.key,
-    required this.id,
     required this.question,
     required this.answer,
     required this.explanation
@@ -17,7 +16,7 @@ class Cardcotainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       // question
-      padding: const EdgeInsets.only(top: 25, left: 25, right: 25),
+      padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
       child: Container(
         padding: const EdgeInsets.all(25),
         decoration: BoxDecoration(

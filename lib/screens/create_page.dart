@@ -9,18 +9,25 @@ class CreatePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.lightBlue[100],
         elevation: 0,
+        title: const Text("Create new card"),
       ),
-      body: Container(
-        // id
-
-        // question
-
-        // answer
-
-        // exlpection
-
-        // それぞれの入力フィード
-        // buttons -> cansel and save
+      body: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Container(
+          child: Column(
+            children: [
+              // question
+              TextField(),
+        
+              // answer
+              TextField(),
+        
+              // explation
+              TextField(),
+        
+            ],
+          )
+        ),
       ),
     );
   }
