@@ -15,6 +15,14 @@ class _HomePageState extends State<HomePage> {
     ['日本で一番一番高い山は？', '富士山', '日本で一番高い山は富士山です。実は富士山は登山の難易度が非常に高いことでも有名です'],
   ];
 
+  // カードを削除
+  void deleteAction(int index) {
+    setState(() {
+      cardList.removeAt(index);
+    });
+  }
+
+
   // カードを追加する関数
   @override
   Widget build(BuildContext context) {
@@ -32,6 +40,7 @@ class _HomePageState extends State<HomePage> {
               question: cardList[index][0],
               answer: cardList[index][1],
               explanation: cardList[index][2],
+              deleteCard: (context) => deleteAction(index),
             );
           },
         ),
@@ -39,7 +48,15 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         // カードの作成画面へ移動する
-        onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => CreatePage())),
+        onPressed: () async {
+          final newCard = await Navigator.push(context, MaterialPageRoute(builder: (context) => CreatePage()));
+          
+          if (newCard != null) {
+            setState(() {
+              cardList.add(newCard);
+            });
+          }
+        },
       ),
     );
   }
