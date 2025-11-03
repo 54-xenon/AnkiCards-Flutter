@@ -1,6 +1,6 @@
-// 作成するカードに関するプロパティ -> firebaseなどのNoSQLのmBassに対応できるようにしておく
-
 class Card {
+  // 作成するカードに関するプロパティ -> firebaseなどのNoSQLのmBassに対応できるようにしておく
+
   // コンストラクタ
   Card({
     required this.id,

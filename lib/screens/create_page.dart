@@ -1,4 +1,3 @@
-import 'package:ankicards/screens/home_page.dart';
 import 'package:ankicards/widget/buttonContainer.dart';
 import 'package:flutter/material.dart';
 
@@ -62,14 +61,8 @@ class _CreatePageState extends State<CreatePage> {
               
               final newCard = [question, answer, explanation];
               Navigator.pop(context, newCard);
-              // textContollorの確認用 -> コンソールに出力されたことを確認済み
-              // print("入力された内容は:");
-              // print(_controllerQ);
-              // print(_controllerA);
-              // print(_controllerE);
             }),
             MyButton(text: "cancel", onPressed: () => Navigator.pop(context)),
-                
           ],
         ),
       ),
