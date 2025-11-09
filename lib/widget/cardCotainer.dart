@@ -7,12 +7,14 @@ class Cardcotainer extends StatelessWidget {
   final String answer;
   final String explanation;
   Function(BuildContext) deleteCard;
+  Function(BuildContext) cardTap;
   Cardcotainer({
     super.key,
     required this.question,
     required this.answer,
     required this.explanation,
     required this.deleteCard,
+    required this.cardTap,
   });
 
   @override
@@ -32,30 +34,33 @@ class Cardcotainer extends StatelessWidget {
             ),
           ],
         ),
-        child: Container(
-          // Slidabelを使うと、widgetの幅がおかしくなるから一派いっぱいまで指定しておく
-          width: double.infinity,
-          padding: const EdgeInsets.all(25),
-          decoration: BoxDecoration(
-            color: Colors.lightBlue[100],
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Column(
-            children: [
-              // question
-              Text(
-                question
-              ),
-              SizedBox(height: 5),
-              // answer
-              Text(
-                answer
-              ),
-              SizedBox(height: 5),
-              Text(
-                explanation
-              )
-            ],
+        child: GestureDetector(
+          onTap: () => cardTap(context),
+          child: Container(
+            // Slidabelを使うと、widgetの幅がおかしくなるから一派いっぱいまで指定しておく
+            width: double.infinity,
+            padding: const EdgeInsets.all(25),
+            decoration: BoxDecoration(
+              color: Colors.lightBlue[100],
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              children: [
+                // question
+                Text(
+                  question
+                ),
+                SizedBox(height: 5),
+                // answer
+                Text(
+                  answer
+                ),
+                SizedBox(height: 5),
+                Text(
+                  explanation
+                )
+              ],
+            ),
           ),
         ),
       ),
