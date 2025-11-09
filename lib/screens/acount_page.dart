@@ -9,7 +9,9 @@ class AcountPage extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
       ),
-      body: Container(),
+      body: Center(
+        child: Text("アカウント機能"),
+      ),
     );
   }
 }

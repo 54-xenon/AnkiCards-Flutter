@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:ankicards/widget/buttonContainer.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +33,6 @@ class _EditPageState extends State<EditPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("edit Page"),
-        backgroundColor: Colors.lightBlue[100],
         elevation: 0,
       ),
       body: Padding(

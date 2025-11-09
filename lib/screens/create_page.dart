@@ -17,9 +17,8 @@ class _CreatePageState extends State<CreatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.lightBlue[100],
-        elevation: 0,
         title: const Text("Create new card"),
+        elevation: 0,
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),

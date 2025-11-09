@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List cardList = [
-    // id, question, answer, explanation
+    // id, question, answer, explanationの順番で保存する
     // example
     ['日本で一番一番高い山は？', '富士山', '日本で一番高い山は富士山です。実は富士山は登山の難易度が非常に高いことでも有名です'],
   ];
@@ -44,7 +44,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Home"), elevation: 0),
+      appBar: AppBar(
+        title: const Text("Home"),
+        elevation: 0,
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 5, //横方向
