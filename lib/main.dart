@@ -1,7 +1,12 @@
 import 'package:ankicards/screens/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+late Box box;
+
+Future <void> main() async{
+  await Hive.initFlutter();
+  box = await Hive.openBox('box1');
   runApp(MyApp());
 }
 
