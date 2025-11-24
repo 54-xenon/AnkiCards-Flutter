@@ -1,12 +1,8 @@
 import 'package:ankicards/screens/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
-late Box box;
 
-Future <void> main() async{
-  await Hive.initFlutter();
-  box = await Hive.openBox('box1');
+void main(){
   runApp(MyApp());
 }
 
@@ -31,6 +27,7 @@ class MyApp extends StatelessWidget {
         floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: Colors.lightBlue[100],
         )
+        // テーマの切り替え(Light/Dark)
       ),
     );
   }

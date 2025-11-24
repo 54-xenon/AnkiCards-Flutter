@@ -26,7 +26,6 @@ AnkiCardsは以下の機能をサポートします。
     - Gemini API
     - Apple Inteligenceのfoundationモデルにも対応
 - Material3のUI
-- Googleでログイン
 - Light/Dartモード
 - 広告なし
 - 継続したアップデート
