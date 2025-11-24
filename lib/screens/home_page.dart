@@ -17,13 +17,6 @@ class _HomePageState extends State<HomePage> {
     ['日本で一番一番高い山は？', '富士山', '日本で一番高い山は富士山です。実は富士山は登山の難易度が非常に高いことでも有名です'],
   ];
 
-  // save a new card
-    // 引数として、一時自適の保存されているリストを設定する
-  void saveAction(List card) {
-
-  }
-
-
 
   // カードを削除
   void deleteAction(int index) {
@@ -40,6 +33,7 @@ class _HomePageState extends State<HomePage> {
       index: index,
     )));
 
+    // nullでない場合は、cardListの状態を更新してデータを追加する
     if (updateCard != null) {
       setState(() {
         cardList[index] = updateCard;
