@@ -1,7 +1,9 @@
+import 'package:ankicards/collections/flashCard.dart';
+import 'package:ankicards/collections/flash_card_repository.dart';
 import 'package:ankicards/screens/create_page.dart';
 import 'package:ankicards/screens/edit_page.dart';
 import 'package:ankicards/widget/cardCotainer.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; 
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,6 +13,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final CardRepository _cardRepository = CardRepository();
+  late Future<List<FlashCard>> _flashCardsFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _flashCardsFuture = _cardRepository.getAllCards();
+  }
   List cardList = [
     // id, question, answer, explanationの順番で保存する
     // example

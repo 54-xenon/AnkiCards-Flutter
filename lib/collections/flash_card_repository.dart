@@ -17,8 +17,20 @@ class CardRepository {
     });
   }
 
+  // get a all cards 
+  Future<List<FlashCard>> getAllCards() async {
+    return await isar.flashCards.where().findAll();
+  }
+
   // update a card
+  Future<void> updateCard() async {
+    
+  }
+
   // delete a card
+  Future<void> deleteCard() async {
+    
+  }
 
   // delete a  all cards
   Future<void> deleteAllCards(List cardData) async {
