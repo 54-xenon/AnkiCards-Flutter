@@ -1,9 +1,9 @@
 import 'package:isar/isar.dart';
 
-part 'card.g.dart';
+part 'flashCard.g.dart';
 
 @collection
-class Card {
+class FlashCard {
   // 自動インクリメントするID
   Id id = Isar.autoIncrement;
   

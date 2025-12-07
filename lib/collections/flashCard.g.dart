@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'card.dart';
+part of 'flashCard.dart';
 
 // **************************************************************************
 // IsarCollectionGenerator
@@ -9,13 +9,13 @@ part of 'card.dart';
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
 
-extension GetCardCollection on Isar {
-  IsarCollection<Card> get cards => this.collection();
+extension GetFlashCardCollection on Isar {
+  IsarCollection<FlashCard> get flashCards => this.collection();
 }
 
-const CardSchema = CollectionSchema(
-  name: r'Card',
-  id: 2706062385186124215,
+const FlashCardSchema = CollectionSchema(
+  name: r'FlashCard',
+  id: 2394645075128407362,
   properties: {
     r'answer': PropertySchema(
       id: 0,
@@ -33,22 +33,22 @@ const CardSchema = CollectionSchema(
       type: IsarType.string,
     )
   },
-  estimateSize: _cardEstimateSize,
-  serialize: _cardSerialize,
-  deserialize: _cardDeserialize,
-  deserializeProp: _cardDeserializeProp,
+  estimateSize: _flashCardEstimateSize,
+  serialize: _flashCardSerialize,
+  deserialize: _flashCardDeserialize,
+  deserializeProp: _flashCardDeserializeProp,
   idName: r'id',
   indexes: {},
   links: {},
   embeddedSchemas: {},
-  getId: _cardGetId,
-  getLinks: _cardGetLinks,
-  attach: _cardAttach,
+  getId: _flashCardGetId,
+  getLinks: _flashCardGetLinks,
+  attach: _flashCardAttach,
   version: '3.1.0+1',
 );
 
-int _cardEstimateSize(
-  Card object,
+int _flashCardEstimateSize(
+  FlashCard object,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
@@ -59,8 +59,8 @@ int _cardEstimateSize(
   return bytesCount;
 }
 
-void _cardSerialize(
-  Card object,
+void _flashCardSerialize(
+  FlashCard object,
   IsarWriter writer,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
@@ -70,13 +70,13 @@ void _cardSerialize(
   writer.writeString(offsets[2], object.question);
 }
 
-Card _cardDeserialize(
+FlashCard _flashCardDeserialize(
   Id id,
   IsarReader reader,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = Card();
+  final object = FlashCard();
   object.answer = reader.readString(offsets[0]);
   object.explanation = reader.readString(offsets[1]);
   object.id = id;
@@ -84,7 +84,7 @@ Card _cardDeserialize(
   return object;
 }
 
-P _cardDeserializeProp<P>(
+P _flashCardDeserializeProp<P>(
   IsarReader reader,
   int propertyId,
   int offset,
@@ -102,28 +102,30 @@ P _cardDeserializeProp<P>(
   }
 }
 
-Id _cardGetId(Card object) {
+Id _flashCardGetId(FlashCard object) {
   return object.id;
 }
 
-List<IsarLinkBase<dynamic>> _cardGetLinks(Card object) {
+List<IsarLinkBase<dynamic>> _flashCardGetLinks(FlashCard object) {
   return [];
 }
 
-void _cardAttach(IsarCollection<dynamic> col, Id id, Card object) {
+void _flashCardAttach(IsarCollection<dynamic> col, Id id, FlashCard object) {
   object.id = id;
 }
 
-extension CardQueryWhereSort on QueryBuilder<Card, Card, QWhere> {
-  QueryBuilder<Card, Card, QAfterWhere> anyId() {
+extension FlashCardQueryWhereSort
+    on QueryBuilder<FlashCard, FlashCard, QWhere> {
+  QueryBuilder<FlashCard, FlashCard, QAfterWhere> anyId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
     });
   }
 }
 
-extension CardQueryWhere on QueryBuilder<Card, Card, QWhereClause> {
-  QueryBuilder<Card, Card, QAfterWhereClause> idEqualTo(Id id) {
+extension FlashCardQueryWhere
+    on QueryBuilder<FlashCard, FlashCard, QWhereClause> {
+  QueryBuilder<FlashCard, FlashCard, QAfterWhereClause> idEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
         lower: id,
@@ -132,7 +134,7 @@ extension CardQueryWhere on QueryBuilder<Card, Card, QWhereClause> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterWhereClause> idNotEqualTo(Id id) {
+  QueryBuilder<FlashCard, FlashCard, QAfterWhereClause> idNotEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -154,7 +156,7 @@ extension CardQueryWhere on QueryBuilder<Card, Card, QWhereClause> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterWhereClause> idGreaterThan(Id id,
+  QueryBuilder<FlashCard, FlashCard, QAfterWhereClause> idGreaterThan(Id id,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -163,7 +165,7 @@ extension CardQueryWhere on QueryBuilder<Card, Card, QWhereClause> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterWhereClause> idLessThan(Id id,
+  QueryBuilder<FlashCard, FlashCard, QAfterWhereClause> idLessThan(Id id,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -172,7 +174,7 @@ extension CardQueryWhere on QueryBuilder<Card, Card, QWhereClause> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterWhereClause> idBetween(
+  QueryBuilder<FlashCard, FlashCard, QAfterWhereClause> idBetween(
     Id lowerId,
     Id upperId, {
     bool includeLower = true,
@@ -189,8 +191,9 @@ extension CardQueryWhere on QueryBuilder<Card, Card, QWhereClause> {
   }
 }
 
-extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
-  QueryBuilder<Card, Card, QAfterFilterCondition> answerEqualTo(
+extension FlashCardQueryFilter
+    on QueryBuilder<FlashCard, FlashCard, QFilterCondition> {
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> answerEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -203,7 +206,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> answerGreaterThan(
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> answerGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -218,7 +221,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> answerLessThan(
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> answerLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -233,7 +236,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> answerBetween(
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> answerBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -252,7 +255,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> answerStartsWith(
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> answerStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -265,7 +268,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> answerEndsWith(
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> answerEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -278,7 +281,8 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> answerContains(String value,
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> answerContains(
+      String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
@@ -289,7 +293,8 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> answerMatches(String pattern,
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> answerMatches(
+      String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
@@ -300,7 +305,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> answerIsEmpty() {
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> answerIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'answer',
@@ -309,7 +314,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> answerIsNotEmpty() {
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> answerIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'answer',
@@ -318,7 +323,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> explanationEqualTo(
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> explanationEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -331,7 +336,8 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> explanationGreaterThan(
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition>
+      explanationGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -346,7 +352,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> explanationLessThan(
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> explanationLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -361,7 +367,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> explanationBetween(
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> explanationBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -380,7 +386,8 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> explanationStartsWith(
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition>
+      explanationStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -393,7 +400,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> explanationEndsWith(
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> explanationEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -406,7 +413,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> explanationContains(
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> explanationContains(
       String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -418,7 +425,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> explanationMatches(
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> explanationMatches(
       String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -430,7 +437,8 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> explanationIsEmpty() {
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition>
+      explanationIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'explanation',
@@ -439,7 +447,8 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> explanationIsNotEmpty() {
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition>
+      explanationIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'explanation',
@@ -448,7 +457,8 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> idEqualTo(Id value) {
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> idEqualTo(
+      Id value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'id',
@@ -457,7 +467,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> idGreaterThan(
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> idGreaterThan(
     Id value, {
     bool include = false,
   }) {
@@ -470,7 +480,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> idLessThan(
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> idLessThan(
     Id value, {
     bool include = false,
   }) {
@@ -483,7 +493,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> idBetween(
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> idBetween(
     Id lower,
     Id upper, {
     bool includeLower = true,
@@ -500,7 +510,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> questionEqualTo(
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> questionEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -513,7 +523,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> questionGreaterThan(
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> questionGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -528,7 +538,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> questionLessThan(
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> questionLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -543,7 +553,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> questionBetween(
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> questionBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -562,7 +572,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> questionStartsWith(
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> questionStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -575,7 +585,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> questionEndsWith(
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> questionEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -588,7 +598,8 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> questionContains(String value,
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> questionContains(
+      String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
@@ -599,7 +610,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> questionMatches(
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> questionMatches(
       String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -611,7 +622,7 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> questionIsEmpty() {
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> questionIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'question',
@@ -620,7 +631,8 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Card, Card, QAfterFilterCondition> questionIsNotEmpty() {
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition>
+      questionIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'question',
@@ -630,114 +642,118 @@ extension CardQueryFilter on QueryBuilder<Card, Card, QFilterCondition> {
   }
 }
 
-extension CardQueryObject on QueryBuilder<Card, Card, QFilterCondition> {}
+extension FlashCardQueryObject
+    on QueryBuilder<FlashCard, FlashCard, QFilterCondition> {}
 
-extension CardQueryLinks on QueryBuilder<Card, Card, QFilterCondition> {}
+extension FlashCardQueryLinks
+    on QueryBuilder<FlashCard, FlashCard, QFilterCondition> {}
 
-extension CardQuerySortBy on QueryBuilder<Card, Card, QSortBy> {
-  QueryBuilder<Card, Card, QAfterSortBy> sortByAnswer() {
+extension FlashCardQuerySortBy on QueryBuilder<FlashCard, FlashCard, QSortBy> {
+  QueryBuilder<FlashCard, FlashCard, QAfterSortBy> sortByAnswer() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'answer', Sort.asc);
     });
   }
 
-  QueryBuilder<Card, Card, QAfterSortBy> sortByAnswerDesc() {
+  QueryBuilder<FlashCard, FlashCard, QAfterSortBy> sortByAnswerDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'answer', Sort.desc);
     });
   }
 
-  QueryBuilder<Card, Card, QAfterSortBy> sortByExplanation() {
+  QueryBuilder<FlashCard, FlashCard, QAfterSortBy> sortByExplanation() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'explanation', Sort.asc);
     });
   }
 
-  QueryBuilder<Card, Card, QAfterSortBy> sortByExplanationDesc() {
+  QueryBuilder<FlashCard, FlashCard, QAfterSortBy> sortByExplanationDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'explanation', Sort.desc);
     });
   }
 
-  QueryBuilder<Card, Card, QAfterSortBy> sortByQuestion() {
+  QueryBuilder<FlashCard, FlashCard, QAfterSortBy> sortByQuestion() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'question', Sort.asc);
     });
   }
 
-  QueryBuilder<Card, Card, QAfterSortBy> sortByQuestionDesc() {
+  QueryBuilder<FlashCard, FlashCard, QAfterSortBy> sortByQuestionDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'question', Sort.desc);
     });
   }
 }
 
-extension CardQuerySortThenBy on QueryBuilder<Card, Card, QSortThenBy> {
-  QueryBuilder<Card, Card, QAfterSortBy> thenByAnswer() {
+extension FlashCardQuerySortThenBy
+    on QueryBuilder<FlashCard, FlashCard, QSortThenBy> {
+  QueryBuilder<FlashCard, FlashCard, QAfterSortBy> thenByAnswer() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'answer', Sort.asc);
     });
   }
 
-  QueryBuilder<Card, Card, QAfterSortBy> thenByAnswerDesc() {
+  QueryBuilder<FlashCard, FlashCard, QAfterSortBy> thenByAnswerDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'answer', Sort.desc);
     });
   }
 
-  QueryBuilder<Card, Card, QAfterSortBy> thenByExplanation() {
+  QueryBuilder<FlashCard, FlashCard, QAfterSortBy> thenByExplanation() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'explanation', Sort.asc);
     });
   }
 
-  QueryBuilder<Card, Card, QAfterSortBy> thenByExplanationDesc() {
+  QueryBuilder<FlashCard, FlashCard, QAfterSortBy> thenByExplanationDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'explanation', Sort.desc);
     });
   }
 
-  QueryBuilder<Card, Card, QAfterSortBy> thenById() {
+  QueryBuilder<FlashCard, FlashCard, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
     });
   }
 
-  QueryBuilder<Card, Card, QAfterSortBy> thenByIdDesc() {
+  QueryBuilder<FlashCard, FlashCard, QAfterSortBy> thenByIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.desc);
     });
   }
 
-  QueryBuilder<Card, Card, QAfterSortBy> thenByQuestion() {
+  QueryBuilder<FlashCard, FlashCard, QAfterSortBy> thenByQuestion() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'question', Sort.asc);
     });
   }
 
-  QueryBuilder<Card, Card, QAfterSortBy> thenByQuestionDesc() {
+  QueryBuilder<FlashCard, FlashCard, QAfterSortBy> thenByQuestionDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'question', Sort.desc);
     });
   }
 }
 
-extension CardQueryWhereDistinct on QueryBuilder<Card, Card, QDistinct> {
-  QueryBuilder<Card, Card, QDistinct> distinctByAnswer(
+extension FlashCardQueryWhereDistinct
+    on QueryBuilder<FlashCard, FlashCard, QDistinct> {
+  QueryBuilder<FlashCard, FlashCard, QDistinct> distinctByAnswer(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'answer', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<Card, Card, QDistinct> distinctByExplanation(
+  QueryBuilder<FlashCard, FlashCard, QDistinct> distinctByExplanation(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'explanation', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<Card, Card, QDistinct> distinctByQuestion(
+  QueryBuilder<FlashCard, FlashCard, QDistinct> distinctByQuestion(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'question', caseSensitive: caseSensitive);
@@ -745,26 +761,27 @@ extension CardQueryWhereDistinct on QueryBuilder<Card, Card, QDistinct> {
   }
 }
 
-extension CardQueryProperty on QueryBuilder<Card, Card, QQueryProperty> {
-  QueryBuilder<Card, int, QQueryOperations> idProperty() {
+extension FlashCardQueryProperty
+    on QueryBuilder<FlashCard, FlashCard, QQueryProperty> {
+  QueryBuilder<FlashCard, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
     });
   }
 
-  QueryBuilder<Card, String, QQueryOperations> answerProperty() {
+  QueryBuilder<FlashCard, String, QQueryOperations> answerProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'answer');
     });
   }
 
-  QueryBuilder<Card, String, QQueryOperations> explanationProperty() {
+  QueryBuilder<FlashCard, String, QQueryOperations> explanationProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'explanation');
     });
   }
 
-  QueryBuilder<Card, String, QQueryOperations> questionProperty() {
+  QueryBuilder<FlashCard, String, QQueryOperations> questionProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'question');
     });

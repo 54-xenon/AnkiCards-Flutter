@@ -2,14 +2,15 @@
   // DBのイニシャライザを記述するファイル -> 別ファイルにする必要はないかもだけどせっかくだから
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
-import 'card.dart';
+import 'flashCard.dart';
 
-late final isar;
+// 型を宣言しないとメソッドの参照エラーになる
+late final Isar isar;
 
 Future<void> initializeIsar() async {
-  final dir = await getApplicationCacheDirectory();
+  final dir = await getApplicationDocumentsDirectory();
   isar = await Isar.open(
-    [CardSchema], 
+    [FlashCardSchema], 
     directory: dir.path,
   );
 }
