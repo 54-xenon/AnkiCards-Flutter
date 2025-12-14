@@ -1,9 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:ankicards/collections/flashCard.dart';
 import 'package:ankicards/collections/flash_card_repository.dart';
 import 'package:ankicards/screens/create_page.dart';
-import 'package:ankicards/screens/edit_page.dart';
 import 'package:ankicards/widget/cardCotainer.dart';
-import 'package:flutter/material.dart'; 
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,75 +18,84 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    _loadCards();
+  }
+
+  void _loadCards() {
     _flashCardsFuture = _cardRepository.getAllCards();
   }
-  List cardList = [
-    // id, question, answer, explanationの順番で保存する
-    // example
-    ['日本で一番一番高い山は？', '富士山', '日本で一番高い山は富士山です。実は富士山は登山の難易度が非常に高いことでも有名です'],
-  ];
 
-
-  // カードを削除
-  void deleteAction(int index) {
+  Future<void> _addCard(List newCard) async {
+    await _cardRepository.addCard(newCard);
     setState(() {
-      cardList.removeAt(index);
+      _loadCards();
     });
   }
 
-  // カードの編集
-  void editAction(int index) async{
-    // カードを更新する処理
-    final updateCard = await Navigator.of(context).push(MaterialPageRoute(builder: (context) => EditPage(
-      card: cardList[index],
-      index: index,
-    )));
-
-    // nullでない場合は、cardListの状態を更新してデータを追加する
-    if (updateCard != null) {
-      setState(() {
-        cardList[index] = updateCard;
-      });
-    }
+  Future<void> _deleteCard(int id) async {
+    await _cardRepository.deleteCard(id);
+    setState(() {
+      _loadCards();
+    });
   }
 
+  Future<void> _updateCard(int id) async {
+    // await _cardRepository.updateCard(id);
+    setState(() {
+      _loadCards();
+    });
+  }
 
-  // カードを追加する関数
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Home"),
-        elevation: 0,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 5, //横方向
-          vertical: 5 //縦歩行
-        ),
-        child: ListView.builder(
-          itemCount: cardList.length,
-          itemBuilder: (context, index) {
-            return Cardcotainer(
-              question: cardList[index][0],
-              answer: cardList[index][1],
-              explanation: cardList[index][2],
-              deleteCard: (context) => deleteAction(index),
-              cardTap: (context) => editAction(index),
-            );
-          },
-        ),
+      appBar: AppBar(title: const Text('Home')),
+      body: FutureBuilder<List<FlashCard>>(
+        future: _flashCardsFuture,
+        builder: (context, snapshot) {
+          // ① ローディング中
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          // ② エラー
+          if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          }
+          // ③ データなし
+          if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text('カードがありません'));
+          }
+          // ④ データあり
+          final cards = snapshot.data!;
+
+          return ListView.builder(
+            itemCount: cards.length,
+            itemBuilder: (context, index) {
+              final card = cards[index];
+              return Cardcotainer(
+                question: card.question,
+                answer: card.answer,
+                explanation: card.explanation,
+                deleteCard: (_) => _deleteCard(card.id),
+                cardTap: (_) {
+                  // 今回は未実装
+
+                },
+              );
+            },
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        // カードの作成画面へ移動する
+        child: const Icon(Icons.add),
         onPressed: () async {
-          final newCard = await Navigator.push(context, MaterialPageRoute(builder: (context) => CreatePage()));
-          
+          final newCard = await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const CreatePage()),
+          );
+
           if (newCard != null) {
-            setState(() {
-              cardList.add(newCard);
-            });
+            await _addCard(newCard);
           }
         },
       ),

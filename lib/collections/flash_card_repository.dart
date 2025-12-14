@@ -23,17 +23,24 @@ class CardRepository {
   }
 
   // update a card
-  Future<void> updateCard() async {
-    
+  Future<void> updateCard(FlashCard flashCard) async {
+    await isar.writeTxn(() async {
+      await isar.flashCards.put(flashCard);
+    });
   }
 
   // delete a card
-  Future<void> deleteCard() async {
-    
+  Future<void> deleteCard(int id) async {
+    await isar.writeTxn(() async {
+      await isar.flashCards.delete(id);
+    });
   }
 
   // delete a  all cards
-  Future<void> deleteAllCards(List cardData) async {
-
+  Future<void> deleteAllCards() async {
+    await isar.writeTxn(() async {
+      // .clearで全てのデータを削除する
+      await isar.flashCards.clear();
+    });
   }
 }

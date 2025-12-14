@@ -1,6 +1,5 @@
 import 'package:ankicards/widget/buttonContainer.dart';
 import 'package:flutter/material.dart';
-import 'package:ankicards/collections/flash_card_repository.dart';
 
 class CreatePage extends StatefulWidget {
   const CreatePage({super.key});
@@ -61,13 +60,6 @@ class _CreatePageState extends State<CreatePage> {
               
               final newCard = [question, answer, explanation];
               Navigator.pop(context, newCard);
-
-              // newCardからデータベースに保存する -> cardListの配列に追加するコードは削除する予定
-              // newCardの流れまでは同じ
-                // card_repositoriに記述した、カード追加メソッドに配列を渡すように設定する
-              // インスタンスを作成 -> 実体化
-              final repo = CardRepository();
-              repo.addCard(newCard);
               
             }),
             MyButton(text: "cancel", onPressed: () => Navigator.pop(context)),
