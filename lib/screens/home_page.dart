@@ -1,3 +1,4 @@
+import 'package:ankicards/screens/edit_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ankicards/collections/flashCard.dart';
 import 'package:ankicards/collections/flash_card_repository.dart';
@@ -39,11 +40,18 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  Future<void> _updateCard(int id) async {
-    // await _cardRepository.updateCard(id);
-    setState(() {
-      _loadCards();
-    });
+  Future<void> _updateCard(FlashCard flashCard) async {
+    final updateCard = await Navigator.push<FlashCard>(
+      context,
+      MaterialPageRoute(builder: (_) => EditPage(card: flashCard)),
+    );
+
+    if (updateCard != null) {
+      await _cardRepository.updateCard(updateCard);
+      setState(() {
+        _loadCards();
+      });
+    }
   }
 
   @override
@@ -77,10 +85,7 @@ class _HomePageState extends State<HomePage> {
                 answer: card.answer,
                 explanation: card.explanation,
                 deleteCard: (_) => _deleteCard(card.id),
-                cardTap: (_) {
-                  // 今回は未実装
-
-                },
+                cardTap: (_) => _updateCard(card),
               );
             },
           );

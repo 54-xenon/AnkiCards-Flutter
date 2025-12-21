@@ -11,6 +11,7 @@ class CardRepository {
        ..answer = cardData[1]
        ..explanation = cardData[2];
        // カスケード記法は記述の最後にコロンをつける
+        // 一つのオブジェクトに対して、連続でメソッドやプロパティを連続で指定できる記法のこと
     await isar.writeTxn(() async {
       // 引数cardDateから受けどったデータnewCardをDBに保存する
       await isar.flashCards.put(newCard); 
@@ -24,6 +25,7 @@ class CardRepository {
 
   // update a card
   Future<void> updateCard(FlashCard flashCard) async {
+    // DBに保存したデータを取り出す
     await isar.writeTxn(() async {
       await isar.flashCards.put(flashCard);
     });
