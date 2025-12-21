@@ -1,5 +1,5 @@
 import 'package:ankicards/collections/isar_setup.dart';
-import 'package:ankicards/screens/home_page.dart';
+import 'package:ankicards/screens/list_page.dart';
 import 'package:flutter/material.dart';
 
 

@@ -39,7 +39,7 @@ class Cardcotainer extends StatelessWidget {
           child: Container(
             // Slidabelを使うと、widgetの幅がおかしくなるから一派いっぱいまで指定しておく
             width: double.infinity,
-            padding: const EdgeInsets.all(25),
+            padding: const EdgeInsets.all(30),
             decoration: BoxDecoration(
               color: Colors.lightBlue[100],
               borderRadius: BorderRadius.circular(12),
