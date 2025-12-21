@@ -60,6 +60,7 @@ class _CreatePageState extends State<CreatePage> {
               
               final newCard = [question, answer, explanation];
               Navigator.pop(context, newCard);
+              
             }),
             MyButton(text: "cancel", onPressed: () => Navigator.pop(context)),
           ],

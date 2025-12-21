@@ -26,7 +26,9 @@ AnkiCardsは以下の機能をサポートします。
     - Gemini API
     - Apple Inteligenceのfoundationモデルにも対応
 - Material3のUI
-- Googleでログイン
 - Light/Dartモード
 - 広告なし
 - 継続したアップデート
+
+# 追記
+データベースをHiveからisarに変更。どうやら、Hiveはもう更新されずに新しいパッケージとしてisarが登場しているようだ。

@@ -1,8 +1,15 @@
+import 'package:ankicards/collections/isar_setup.dart';
 import 'package:ankicards/screens/home_page.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
+
+
+// Hive(DBの初期化)
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  // データベースの初期化
+  await initializeIsar();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -26,6 +33,7 @@ class MyApp extends StatelessWidget {
         floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: Colors.lightBlue[100],
         )
+        // テーマの切り替え(Light/Dark)
       ),
     );
   }

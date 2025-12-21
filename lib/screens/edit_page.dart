@@ -1,14 +1,13 @@
 
+import 'package:ankicards/collections/flashCard.dart';
 import 'package:ankicards/widget/buttonContainer.dart';
 import 'package:flutter/material.dart';
 
 class EditPage extends StatefulWidget {
-  final dynamic card;
-  final dynamic index;
+  final FlashCard card;
   const EditPage({
     super.key,
     required this.card,
-    required this.index,
   });
 
   @override
@@ -17,19 +16,31 @@ class EditPage extends StatefulWidget {
 
 class _EditPageState extends State<EditPage> {
   // テキストコントローラーを設定
-  final TextEditingController _controllerQ = TextEditingController();
-  final TextEditingController _controllerA = TextEditingController();
-  final TextEditingController _controllerE = TextEditingController();
+   // late -> lateを使うことで代入を後回しにすることができる
+  late TextEditingController _controllerQ;
+  late TextEditingController _controllerA;
+  late TextEditingController _controllerE;
 
+  @override
+  void initState() {
+    super.initState();
+    _controllerQ = TextEditingController(text: widget.card.question);
+    _controllerA = TextEditingController(text: widget.card.answer);
+    _controllerE = TextEditingController(text: widget.card.explanation);
+
+  }
+
+  @override
+  // メモリリリーク防止 -> 処理が終わるとメモリ解放(明示的にメモリ解放を宣言しておく)
+  void dispose() {
+    _controllerQ.dispose();
+    _controllerA.dispose();
+    _controllerE.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-      // からのテキストコントローラーに初期値を設定する
-      _controllerQ.text = widget.card[0];
-      _controllerA.text = widget.card[1];
-      _controllerE.text = widget.card[2];
-
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("edit Page"),
@@ -62,13 +73,10 @@ class _EditPageState extends State<EditPage> {
             ),
             SizedBox(height: 10),
             MyButton(text: "Save", onPressed: () {
-              //　TextFildが更新刺される -> 新しい文字列を代入して元の画面に戻る
-              final updateCard = [
-                // .textを指定しないと型エラーになる
-                _controllerQ.text,
-                _controllerA.text,
-                _controllerE.text
-              ];
+              final updateCard = widget.card
+                ..question = _controllerQ.text
+                ..answer = _controllerA.text
+                ..explanation = _controllerE.text;              
 
               Navigator.pop(context, updateCard);
             }),
