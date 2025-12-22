@@ -5,14 +5,14 @@ import 'package:ankicards/collections/flash_card_repository.dart';
 import 'package:ankicards/screens/create_page.dart';
 import 'package:ankicards/widget/cardCotainer.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class ListPage extends StatefulWidget {
+  const ListPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<ListPage> createState() => _ListPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _ListPageState extends State<ListPage> {
   final CardRepository _cardRepository = CardRepository();
   late Future<List<FlashCard>> _flashCardsFuture;
 
