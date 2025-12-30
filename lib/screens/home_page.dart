@@ -7,13 +7,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("HomePage"),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          child: Text('タップしてリストを表示'),
-          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ListPage())),
+      body: SafeArea(
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.amber[100],
+          ),
         ),
       ),
     );

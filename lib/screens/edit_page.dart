@@ -43,18 +43,42 @@ class _EditPageState extends State<EditPage> {
         child: Column(
           children: [
             TextField(
-              decoration: InputDecoration(border: OutlineInputBorder()),
+              autocorrect: true,
+              decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.lightBlue,
+                  ),
+                ),
+                border: OutlineInputBorder()
+              ),
               // コントローラーの設定
               controller: _controllerQ,
             ),
             SizedBox(height: 10),
             TextField(
-              decoration: InputDecoration(border: OutlineInputBorder()),
+              autocorrect: true,
+              decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.lightBlue,
+                  ),
+                ),
+                border: OutlineInputBorder()
+              ),
               controller: _controllerA,
             ),
             SizedBox(height: 10),
             TextField(
-              decoration: InputDecoration(border: OutlineInputBorder()),
+              autocorrect: true,
+              decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.lightBlue,
+                  ),
+                ),
+                border: OutlineInputBorder(),
+              ),
               controller: _controllerE,
             ),
             SizedBox(height: 10),
@@ -62,12 +86,12 @@ class _EditPageState extends State<EditPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 MyButton(
-                  text: "Cancel",
+                  text: "キャンセル",
                   onPressed: () => Navigator.pop(context),
                 ),
                 SizedBox(width: 8),
                 MyButton(
-                  text: "Save",
+                  text: "保存",
                   onPressed: () {
                     final updateCard =
                         widget.card

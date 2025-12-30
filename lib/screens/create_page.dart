@@ -23,8 +23,14 @@ class _CreatePageState extends State<CreatePage> {
           children: [
             // question
             TextField(
+              autocorrect: true,
               controller: _controllerQ,
               decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.lightBlue,
+                  ), 
+                ),
                 border: OutlineInputBorder(),
                 hintText: "質問を入力",
               ),
@@ -33,18 +39,30 @@ class _CreatePageState extends State<CreatePage> {
             SizedBox(height: 10),
             // answer
             TextField(
+              autocorrect: true,
               controller: _controllerA,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.lightBlue,
+                  ),
+                ),
                 hintText: "回答を入力",
               ),
             ),
             SizedBox(height: 10),
             // explation
             TextField(
+              autocorrect: true,
               controller: _controllerE,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.lightBlue,
+                  ),
+                ),
                 hintText: "解説を入力",
               ),
             ),
@@ -58,7 +76,7 @@ class _CreatePageState extends State<CreatePage> {
                 ),
                 SizedBox(width: 10),
                 MyButton(
-                  text: "ok",
+                  text: "保存",
                   onPressed: () {
                     // 直接値を渡すのではなく、一度定数を定義してそこに移して直接contextの後に渡す引数は1つだけにする
                     final question = _controllerQ.text;

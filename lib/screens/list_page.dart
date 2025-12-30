@@ -57,42 +57,44 @@ class _ListPageState extends State<ListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
-      body: FutureBuilder<List<FlashCard>>(
-        future: _flashCardsFuture,
-        builder: (context, snapshot) {
-          // ① ローディング中
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          // ② エラー
-          if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          }
-          // ③ データなし
-          if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: Text('カードがありません'));
-          }
-          // ④ データあり
-          final cards = snapshot.data!;
-
-          return ListView.builder(
-            itemCount: cards.length,
-            itemBuilder: (context, index) {
-              final card = cards[index];
-              return Cardcotainer(
-                question: card.question,
-                answer: card.answer,
-                explanation: card.explanation,
-                deleteCard: (_) => _deleteCard(card.id),
-                cardTap: (_) => _updateCard(card),
-              );
-            },
-          );
-        },
+      body: SafeArea(
+        child: FutureBuilder<List<FlashCard>>(
+          future: _flashCardsFuture,
+          builder: (context, snapshot) {
+            // ① ローディング中
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            // ② エラー
+            if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            }
+            // ③ データなし
+            if (!snapshot.hasData || snapshot.data!.isEmpty) {
+              return const Center(child: Text('カードがありません'));
+            }
+            // ④ データあり
+            final cards = snapshot.data!;
+        
+            return ListView.builder(
+              itemCount: cards.length,
+              itemBuilder: (context, index) {
+                final card = cards[index];
+                return Cardcotainer(
+                  question: card.question,
+                  answer: card.answer,
+                  explanation: card.explanation,
+                  deleteCard: (_) => _deleteCard(card.id),
+                  cardTap: (_) => _updateCard(card),
+                );
+              },
+            );
+          },
+        ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
+      floatingActionButton: FloatingActionButton.extended(
+        label: Text('作成'),
+        icon: Icon(Icons.edit),
         onPressed: () async {
           final newCard = await Navigator.push(
             context,
