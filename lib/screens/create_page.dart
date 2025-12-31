@@ -16,53 +16,79 @@ class _CreatePageState extends State<CreatePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Create new card"),
-        elevation: 0,
-      ),
+      appBar: AppBar(title: const Text("Create new card"), elevation: 0),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
             // question
             TextField(
+              autocorrect: true,
               controller: _controllerQ,
               decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.lightBlue,
+                  ), 
+                ),
                 border: OutlineInputBorder(),
-                hintText: "質問を入力"
+                hintText: "質問を入力",
               ),
             ),
-        
+
             SizedBox(height: 10),
             // answer
             TextField(
+              autocorrect: true,
               controller: _controllerA,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                hintText: "回答を入力"
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.lightBlue,
+                  ),
+                ),
+                hintText: "回答を入力",
               ),
             ),
             SizedBox(height: 10),
             // explation
             TextField(
+              autocorrect: true,
               controller: _controllerE,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                hintText: "解説を入力"
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.lightBlue,
+                  ),
+                ),
+                hintText: "解説を入力",
               ),
             ),
             // taped ok button -> リストに追加して、home_pageのListViewをsetStateで更新
-            MyButton(text: "ok", onPressed: () {
-              // 直接値を渡すのではなく、一度定数を定義してそこに移して直接contextの後に渡す引数は1つだけにする
-              final question = _controllerQ.text;
-              final answer = _controllerA.text;
-              final explanation = _controllerE.text;
-              
-              final newCard = [question, answer, explanation];
-              Navigator.pop(context, newCard);
-              
-            }),
-            MyButton(text: "cancel", onPressed: () => Navigator.pop(context)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                MyButton(
+                  text: "キャンセル",
+                  onPressed: () => Navigator.pop(context),
+                ),
+                SizedBox(width: 10),
+                MyButton(
+                  text: "保存",
+                  onPressed: () {
+                    // 直接値を渡すのではなく、一度定数を定義してそこに移して直接contextの後に渡す引数は1つだけにする
+                    final question = _controllerQ.text;
+                    final answer = _controllerA.text;
+                    final explanation = _controllerE.text;
+
+                    final newCard = [question, answer, explanation];
+                    Navigator.pop(context, newCard);
+                  },
+                ),
+              ],
+            ),
           ],
         ),
       ),
