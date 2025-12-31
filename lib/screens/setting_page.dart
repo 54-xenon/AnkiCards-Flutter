@@ -6,8 +6,15 @@ class SettingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text("設定ページ"),
+      body: SafeArea(
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.amber[100],
+          ),
+          child: Center(
+            child: Text("設定ページ"),
+          ),
+        ),
       ),
     );
   }
