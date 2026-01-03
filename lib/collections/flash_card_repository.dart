@@ -9,7 +9,8 @@ class CardRepository {
     final newCard = FlashCard()
        ..question = cardData[0]
        ..answer = cardData[1]
-       ..explanation = cardData[2];
+       ..explanation = cardData[2]
+       ..isCorrect = null;
        // カスケード記法は記述の最後にコロンをつける
         // 一つのオブジェクトに対して、連続でメソッドやプロパティを連続で指定できる記法のこと
     await isar.writeTxn(() async {

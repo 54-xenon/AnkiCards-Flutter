@@ -27,8 +27,13 @@ const FlashCardSchema = CollectionSchema(
       name: r'explanation',
       type: IsarType.string,
     ),
-    r'question': PropertySchema(
+    r'isCorrect': PropertySchema(
       id: 2,
+      name: r'isCorrect',
+      type: IsarType.bool,
+    ),
+    r'question': PropertySchema(
+      id: 3,
       name: r'question',
       type: IsarType.string,
     )
@@ -67,7 +72,8 @@ void _flashCardSerialize(
 ) {
   writer.writeString(offsets[0], object.answer);
   writer.writeString(offsets[1], object.explanation);
-  writer.writeString(offsets[2], object.question);
+  writer.writeBool(offsets[2], object.isCorrect);
+  writer.writeString(offsets[3], object.question);
 }
 
 FlashCard _flashCardDeserialize(
@@ -80,7 +86,8 @@ FlashCard _flashCardDeserialize(
   object.answer = reader.readString(offsets[0]);
   object.explanation = reader.readString(offsets[1]);
   object.id = id;
-  object.question = reader.readString(offsets[2]);
+  object.isCorrect = reader.readBoolOrNull(offsets[2]);
+  object.question = reader.readString(offsets[3]);
   return object;
 }
 
@@ -96,6 +103,8 @@ P _flashCardDeserializeProp<P>(
     case 1:
       return (reader.readString(offset)) as P;
     case 2:
+      return (reader.readBoolOrNull(offset)) as P;
+    case 3:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -510,6 +519,33 @@ extension FlashCardQueryFilter
     });
   }
 
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> isCorrectIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'isCorrect',
+      ));
+    });
+  }
+
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition>
+      isCorrectIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'isCorrect',
+      ));
+    });
+  }
+
+  QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> isCorrectEqualTo(
+      bool? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'isCorrect',
+        value: value,
+      ));
+    });
+  }
+
   QueryBuilder<FlashCard, FlashCard, QAfterFilterCondition> questionEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -673,6 +709,18 @@ extension FlashCardQuerySortBy on QueryBuilder<FlashCard, FlashCard, QSortBy> {
     });
   }
 
+  QueryBuilder<FlashCard, FlashCard, QAfterSortBy> sortByIsCorrect() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isCorrect', Sort.asc);
+    });
+  }
+
+  QueryBuilder<FlashCard, FlashCard, QAfterSortBy> sortByIsCorrectDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isCorrect', Sort.desc);
+    });
+  }
+
   QueryBuilder<FlashCard, FlashCard, QAfterSortBy> sortByQuestion() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'question', Sort.asc);
@@ -724,6 +772,18 @@ extension FlashCardQuerySortThenBy
     });
   }
 
+  QueryBuilder<FlashCard, FlashCard, QAfterSortBy> thenByIsCorrect() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isCorrect', Sort.asc);
+    });
+  }
+
+  QueryBuilder<FlashCard, FlashCard, QAfterSortBy> thenByIsCorrectDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isCorrect', Sort.desc);
+    });
+  }
+
   QueryBuilder<FlashCard, FlashCard, QAfterSortBy> thenByQuestion() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'question', Sort.asc);
@@ -753,6 +813,12 @@ extension FlashCardQueryWhereDistinct
     });
   }
 
+  QueryBuilder<FlashCard, FlashCard, QDistinct> distinctByIsCorrect() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'isCorrect');
+    });
+  }
+
   QueryBuilder<FlashCard, FlashCard, QDistinct> distinctByQuestion(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -778,6 +844,12 @@ extension FlashCardQueryProperty
   QueryBuilder<FlashCard, String, QQueryOperations> explanationProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'explanation');
+    });
+  }
+
+  QueryBuilder<FlashCard, bool?, QQueryOperations> isCorrectProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'isCorrect');
     });
   }
 

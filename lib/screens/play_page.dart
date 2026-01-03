@@ -53,7 +53,7 @@ class PlayPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      MyButton(text: '分からなかった', onPressed: () {},),
+                      MyButton(text: '分からない', onPressed: () {},),
                       MyButton(text: '分かった', onPressed: () {}),
                     ],
                   ),
