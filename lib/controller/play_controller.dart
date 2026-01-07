@@ -78,7 +78,25 @@ class PlayController {
     return _currentIndex >= _playList.length;
   }
 
-  // 結果の表示
+  // 結果の表示 -> 結果を表示するためのデータを記録
+  List<int> PlayResult(int correctCount, int incorrectCount) {
+    /* 
+      保存するプロパティ
+      - correct -> 正解した問題
+      - wrong -> 不正解の問題
+      - total -> 回答したトータルの問題(correct + wrong = totalとする)
+    */
+    int correct = correctCount;
+    int wrong = incorrectCount;
+    int total = (correct + wrong);
+    
+    List<int> resultList = [
+      correct,
+      wrong,
+      total,
+    ];
+    return resultList;
+  }
   
 
 }
