@@ -1,4 +1,4 @@
-import 'package:ankicards/collections/flashCard.dart';
+import 'package:ankicards/repository/flashCard.dart';
 import 'package:ankicards/widget/buttonContainer.dart';
 import 'package:flutter/material.dart';
 

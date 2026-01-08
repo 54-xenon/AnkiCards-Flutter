@@ -1,7 +1,7 @@
 import 'package:ankicards/screens/edit_page.dart';
 import 'package:flutter/material.dart';
-import 'package:ankicards/collections/flashCard.dart';
-import 'package:ankicards/collections/flash_card_repository.dart';
+import 'package:ankicards/repository/flashCard.dart';
+import 'package:ankicards/repository/flash_card_repository.dart';
 import 'package:ankicards/screens/create_page.dart';
 import 'package:ankicards/widget/cardCotainer.dart';
 
@@ -22,7 +22,7 @@ class _ListPageState extends State<ListPage> {
     _loadCards();
   }
 
-  // カードの読み込み
+  // カードの読み込む
   void _loadCards() {
     _flashCardsFuture = _cardRepository.getAllCards();
   }

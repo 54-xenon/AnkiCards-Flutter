@@ -1,5 +1,6 @@
-import 'package:ankicards/collections/flashCard.dart';
-import 'package:ankicards/collections/flash_card_repository.dart';
+import 'package:ankicards/repository/flashCard.dart';
+import 'package:ankicards/repository/flash_card_repository.dart';
+import 'package:ankicards/repository/resultModel.dart';
 
 
 
@@ -29,7 +30,7 @@ class PlayController {
   Future<void> inisilaize() async{
     // 保存したカードの取得
     _playList = await _cardRepository.getAllCards();
-    // カードのランダム
+    // カードのランダム　
     _playList.shuffle();
     // 各種変数の初期化
     _currentIndex = 0;
@@ -59,11 +60,11 @@ class PlayController {
     if (isCorrect) {
       // true -> 分かったとしてカウント
       correctCount++;
-      card.isCorrect = true;
+      card!.isCorrect = true;
     } else {
       // false -> 分からなかったとしてカウント
       incorrectCount++;
-      card.isCorrect = false;
+      card!.isCorrect = false;
     }
 
     // DBに回答後の問題を保存
@@ -79,24 +80,18 @@ class PlayController {
   }
 
   // 結果の表示 -> 結果を表示するためのデータを記録
-  List<int> PlayResult(int correctCount, int incorrectCount) {
+  resultModel getResult() {
     /* 
       保存するプロパティ
       - correct -> 正解した問題
       - wrong -> 不正解の問題
       - total -> 回答したトータルの問題(correct + wrong = totalとする)
     */
-    int correct = correctCount;
-    int wrong = incorrectCount;
-    int total = (correct + wrong);
-    
-    List<int> resultList = [
-      correct,
-      wrong,
-      total,
-    ];
-    return resultList;
+    return resultModel(
+      correct: correctCount,
+      wrong: incorrectCount,
+      total: (correctCount + incorrectCount),
+    );
   }
   
-
 }

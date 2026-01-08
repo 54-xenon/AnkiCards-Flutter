@@ -1,4 +1,5 @@
 import 'package:ankicards/controller/play_controller.dart';
+import 'package:ankicards/screens/resultPage.dart';
 import 'package:ankicards/widget/buttonContainer.dart';
 import 'package:flutter/material.dart';
 
@@ -91,8 +92,9 @@ class _PlayPageState extends State<PlayPage> {
                       onPressed: () async {
                         await _controller.answer(false);
                         if (_controller.isFinished) {
-                          Navigator.pop(context);
-                          return; // returnを置くことで、setStateの処理をジャンプして、存在しないインデックスへのアクセスを防ぐ為に必要となる
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Resultpage(result: _controller.getResult(),)));
+                          // returnを置くことで、setStateの処理をジャンプして、存在しないインデックスへのアクセスを防ぐ為に必要となる
+                          return; 
                         }
                         setState(() {
                           // もし、回答を表示した場合に次の問題文の答えが見えないようにするため
@@ -105,7 +107,7 @@ class _PlayPageState extends State<PlayPage> {
                       onPressed: () async {
                         await _controller.answer(true);
                         if (_controller.isFinished) {
-                          Navigator.pop(context);
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Resultpage(result: _controller.getResult(),)));
                           return;
                         }
                         setState(() {
