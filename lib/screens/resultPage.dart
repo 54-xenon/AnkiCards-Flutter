@@ -19,12 +19,6 @@ class Resultpage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                /* 
-                  - お疲れのテキスト
-                  - 大きめのアイコン
-                  - 結果の表示  current / totalの形式で表示する
-                  - ボタン -> Homeに戻るボタンと再挑戦のボタン
-                */ 
                 Text(
                   "Great👏",
                   style: TextStyle(
