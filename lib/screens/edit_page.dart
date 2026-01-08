@@ -1,4 +1,4 @@
-import 'package:ankicards/collections/flashCard.dart';
+import 'package:ankicards/repository/flashCard.dart';
 import 'package:ankicards/widget/buttonContainer.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +37,10 @@ class _EditPageState extends State<EditPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("edit Page"), elevation: 0),
+      appBar: AppBar(
+        title: const Text("編集"),
+        elevation: 0,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(

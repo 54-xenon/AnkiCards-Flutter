@@ -1,7 +1,7 @@
 import 'package:ankicards/screens/edit_page.dart';
 import 'package:flutter/material.dart';
-import 'package:ankicards/collections/flashCard.dart';
-import 'package:ankicards/collections/flash_card_repository.dart';
+import 'package:ankicards/repository/flashCard.dart';
+import 'package:ankicards/repository/flash_card_repository.dart';
 import 'package:ankicards/screens/create_page.dart';
 import 'package:ankicards/widget/cardCotainer.dart';
 
@@ -22,10 +22,12 @@ class _ListPageState extends State<ListPage> {
     _loadCards();
   }
 
+  // カードの読み込む
   void _loadCards() {
     _flashCardsFuture = _cardRepository.getAllCards();
   }
 
+  // カードの追加
   Future<void> _addCard(List newCard) async {
     await _cardRepository.addCard(newCard);
     setState(() {
@@ -33,6 +35,7 @@ class _ListPageState extends State<ListPage> {
     });
   }
 
+  // カードの削除
   Future<void> _deleteCard(int id) async {
     await _cardRepository.deleteCard(id);
     setState(() {
@@ -40,6 +43,7 @@ class _ListPageState extends State<ListPage> {
     });
   }
 
+  // カードの変種後の更新
   Future<void> _updateCard(FlashCard flashCard) async {
     final updateCard = await Navigator.push<FlashCard>(
       context,
@@ -54,6 +58,7 @@ class _ListPageState extends State<ListPage> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,15 +68,21 @@ class _ListPageState extends State<ListPage> {
           builder: (context, snapshot) {
             // ① ローディング中
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
             }
             // ② エラー
             if (snapshot.hasError) {
-              return Center(child: Text('Error: ${snapshot.error}'));
+              return Center(
+                child: Text('Error: ${snapshot.error}'),
+              );
             }
             // ③ データなし
             if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return const Center(child: Text('カードがありません'));
+              return const Center(
+                child: Text('カードがありません'),
+              );
             }
             // ④ データあり
             final cards = snapshot.data!;
@@ -84,6 +95,7 @@ class _ListPageState extends State<ListPage> {
                   question: card.question,
                   answer: card.answer,
                   explanation: card.explanation,
+                  isCorrect: card.isCorrect,
                   deleteCard: (_) => _deleteCard(card.id),
                   cardTap: (_) => _updateCard(card),
                 );

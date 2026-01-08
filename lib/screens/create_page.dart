@@ -16,7 +16,10 @@ class _CreatePageState extends State<CreatePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Create new card"), elevation: 0),
+      appBar: AppBar(
+        title: const Text("新規作成"),
+        elevation: 0
+      ),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(

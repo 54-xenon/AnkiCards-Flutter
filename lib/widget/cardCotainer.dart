@@ -6,6 +6,7 @@ class Cardcotainer extends StatelessWidget {
   final String question;
   final String answer;
   final String explanation;
+  final bool? isCorrect;
   Function(BuildContext) deleteCard;
   Function(BuildContext) cardTap;
   Cardcotainer({
@@ -13,6 +14,7 @@ class Cardcotainer extends StatelessWidget {
     required this.question,
     required this.answer,
     required this.explanation,
+    required this.isCorrect,
     required this.deleteCard,
     required this.cardTap,
   });
@@ -48,7 +50,11 @@ class Cardcotainer extends StatelessWidget {
               children: [
                 // question
                 Text(
-                  question
+                  question,
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 SizedBox(height: 5),
                 // answer
@@ -58,7 +64,11 @@ class Cardcotainer extends StatelessWidget {
                 SizedBox(height: 5),
                 Text(
                   explanation
-                )
+                ),
+                SizedBox(height: 5),
+                Text(
+                  "前回の結果: $isCorrect",
+                ),
               ],
             ),
           ),
