@@ -49,9 +49,7 @@ class _EditPageState extends State<EditPage> {
               autocorrect: true,
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.lightBlue,
-                  ),
+                  borderSide: BorderSide(),
                 ),
                 border: OutlineInputBorder()
               ),
@@ -63,9 +61,7 @@ class _EditPageState extends State<EditPage> {
               autocorrect: true,
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.lightBlue,
-                  ),
+                  borderSide: BorderSide(),
                 ),
                 border: OutlineInputBorder()
               ),
@@ -76,9 +72,7 @@ class _EditPageState extends State<EditPage> {
               autocorrect: true,
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.lightBlue,
-                  ),
+                  borderSide: BorderSide(),
                 ),
                 border: OutlineInputBorder(),
               ),

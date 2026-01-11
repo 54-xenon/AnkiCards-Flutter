@@ -30,9 +30,7 @@ class _CreatePageState extends State<CreatePage> {
               controller: _controllerQ,
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.lightBlue,
-                  ), 
+                  borderSide: BorderSide(), 
                 ),
                 border: OutlineInputBorder(),
                 hintText: "質問",
@@ -47,9 +45,7 @@ class _CreatePageState extends State<CreatePage> {
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.lightBlue,
-                  ),
+                  borderSide: BorderSide(),
                 ),
                 hintText: "回答",
               ),
@@ -62,9 +58,7 @@ class _CreatePageState extends State<CreatePage> {
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.lightBlue,
-                  ),
+                  borderSide: BorderSide(),
                 ),
                 hintText: "解説",
               ),
