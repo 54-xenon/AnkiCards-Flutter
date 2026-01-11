@@ -18,7 +18,7 @@ class _CreatePageState extends State<CreatePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("新規作成"),
-        elevation: 0
+        elevation: 0,
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
