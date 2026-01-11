@@ -35,7 +35,7 @@ class _CreatePageState extends State<CreatePage> {
                   ), 
                 ),
                 border: OutlineInputBorder(),
-                hintText: "質問を入力",
+                hintText: "質問",
               ),
             ),
 
@@ -51,7 +51,7 @@ class _CreatePageState extends State<CreatePage> {
                     color: Colors.lightBlue,
                   ),
                 ),
-                hintText: "回答を入力",
+                hintText: "回答",
               ),
             ),
             SizedBox(height: 10),
@@ -66,7 +66,7 @@ class _CreatePageState extends State<CreatePage> {
                     color: Colors.lightBlue,
                   ),
                 ),
-                hintText: "解説を入力",
+                hintText: "解説",
               ),
             ),
             // taped ok button -> リストに追加して、home_pageのListViewをsetStateで更新

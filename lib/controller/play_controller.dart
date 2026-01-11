@@ -60,11 +60,11 @@ class PlayController {
     if (isCorrect) {
       // true -> 分かったとしてカウント
       correctCount++;
-      card!.isCorrect = true;
+      card.isCorrect = true;
     } else {
       // false -> 分からなかったとしてカウント
       incorrectCount++;
-      card!.isCorrect = false;
+      card.isCorrect = false;
     }
 
     // DBに回答後の問題を保存

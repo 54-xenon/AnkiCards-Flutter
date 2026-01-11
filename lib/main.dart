@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 
 
 
-// Hive(DBの初期化)
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   // データベースの初期化
