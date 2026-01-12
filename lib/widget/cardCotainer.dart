@@ -43,7 +43,7 @@ class Cardcotainer extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.all(30),
             decoration: BoxDecoration(
-              color: Colors.lightBlue[50],
+              color: Theme.of(context).colorScheme.surfaceContainer,
               borderRadius: BorderRadius.circular(12),
             ),
             child: Column(

@@ -38,6 +38,7 @@ class _PlayPageState extends State<PlayPage> {
       return Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(),
       body: SafeArea(
         child: Padding(
@@ -50,7 +51,7 @@ class _PlayPageState extends State<PlayPage> {
                 height: 100,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  color: Colors.amber[100],
+                  // color: Colors.amber[100],
                 ),
               ),
               // flashcard
@@ -67,7 +68,7 @@ class _PlayPageState extends State<PlayPage> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    color: Colors.lightBlue[50],
+                    color: Theme.of(context).colorScheme.surfaceContainer,
                   ),
                   child: Center(
                     child: Text(
@@ -83,7 +84,9 @@ class _PlayPageState extends State<PlayPage> {
               // button -> true or false
               Container(
                 height: 100,
-                decoration: BoxDecoration(color: Colors.amberAccent),
+                decoration: BoxDecoration(
+                  // color: Colors.amberAccent,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [

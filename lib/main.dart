@@ -28,6 +28,24 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       title: 'AnkiCards',
+      // ライトテーマ
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+          brightness: Brightness.light,
+        )
+      ),
+      // ダークテーマ
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+          brightness: Brightness.dark,
+        ),
+      ),
+      
+      // 現在のテーマ設定
       home: BottomNavigation(),
       debugShowCheckedModeBanner: true,
     );
