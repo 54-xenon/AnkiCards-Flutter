@@ -47,6 +47,7 @@ class _EditPageState extends State<EditPage> {
         child: Column(
           children: [
             TextField(
+              maxLines: 2,
               autocorrect: true,
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
@@ -57,7 +58,7 @@ class _EditPageState extends State<EditPage> {
               // コントローラーの設定
               controller: _controllerQ,
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             TextField(
               autocorrect: true,
               decoration: InputDecoration(
@@ -68,8 +69,9 @@ class _EditPageState extends State<EditPage> {
               ),
               controller: _controllerA,
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             TextField(
+              maxLines: 5,
               autocorrect: true,
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
@@ -79,7 +81,7 @@ class _EditPageState extends State<EditPage> {
               ),
               controller: _controllerE,
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

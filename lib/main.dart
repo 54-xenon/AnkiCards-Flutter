@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // ローカライゼーション
+      // ローカライゼーション -> 日本語環境に最適化
       supportedLocales: [Locale('English'), Locale('ja')],
       localizationsDelegates:  [
         GlobalMaterialLocalizations.delegate,
@@ -46,6 +46,8 @@ class MyApp extends StatelessWidget {
       ),
       
       // 現在のテーマ設定
+
+      // Navbarの表示を固定するために、homeにNavbarを指定する
       home: BottomNavigation(),
       debugShowCheckedModeBanner: true,
     );
@@ -63,7 +65,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   static const _screens = [
     HomePage(),
     ListPage(),
-    SettingPage(),
+    // SettingPage(),
   ];
 
   int _selectIndex = 0;
@@ -90,11 +92,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
             icon: Icon(Icons.list_outlined),
             label: 'リスト',
           ),
-          NavigationDestination(
-            selectedIcon: Icon(Icons.settings),
-            icon: Icon(Icons.settings_outlined),
-            label: '設定',
-          ),
+          // 一時的に設定ページを無効化 -> 実装が追いついていないから
+          // NavigationDestination(
+          //   selectedIcon: Icon(Icons.settings),
+          //   icon: Icon(Icons.settings_outlined),
+          //   label: '設定',
+          // ),
         ],
       ),
     );

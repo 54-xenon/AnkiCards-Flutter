@@ -24,8 +24,8 @@ class _CreatePageState extends State<CreatePage> {
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
-            // question
             TextField(
+              maxLines: 2,
               autocorrect: true,
               controller: _controllerQ,
               decoration: InputDecoration(
@@ -36,8 +36,7 @@ class _CreatePageState extends State<CreatePage> {
                 hintText: "質問",
               ),
             ),
-
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             // answer
             TextField(
               autocorrect: true,
@@ -50,9 +49,10 @@ class _CreatePageState extends State<CreatePage> {
                 hintText: "回答",
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             // explation
             TextField(
+              maxLines: 5,
               autocorrect: true,
               controller: _controllerE,
               decoration: InputDecoration(
@@ -63,7 +63,7 @@ class _CreatePageState extends State<CreatePage> {
                 hintText: "解説",
               ),
             ),
-            // taped ok button -> リストに追加して、home_pageのListViewをsetStateで更新
+            SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
