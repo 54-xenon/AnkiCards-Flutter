@@ -62,7 +62,7 @@ class Resultpage extends StatelessWidget {
                     height: 60,
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.primary,
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(16),
                     ),
                     child: Row (
                       mainAxisAlignment: MainAxisAlignment.center,

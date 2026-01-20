@@ -52,7 +52,7 @@ class _CreatePageState extends State<CreatePage> {
             SizedBox(height: 20),
             // explation
             TextField(
-              maxLines: 5,
+              maxLines: 15,
               autocorrect: true,
               controller: _controllerE,
               decoration: InputDecoration(

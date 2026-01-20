@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
                 height: 100,
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.primaryContainer,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(16),
                 ),
                 child: Row(
                   children: [
@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                   width: double.infinity,
                   height: 50,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12.0),
+                    borderRadius: BorderRadius.circular(16),
                     color: Theme.of(context).colorScheme.primary,
                   ),
                   child: Center(

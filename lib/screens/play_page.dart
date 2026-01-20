@@ -50,7 +50,7 @@ class _PlayPageState extends State<PlayPage> {
               Container(
                 height: 100,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(16),
                   // color: Colors.amber[100],
                 ),
               ),

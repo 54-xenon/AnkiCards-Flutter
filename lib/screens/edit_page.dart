@@ -19,6 +19,7 @@ class _EditPageState extends State<EditPage> {
 
   @override
   void initState() {
+    // 初期化する -> 各テキストコントローラに、取得した文字列をセットする
     super.initState();
     _controllerQ = TextEditingController(text: widget.card.question);
     _controllerA = TextEditingController(text: widget.card.answer);
@@ -71,7 +72,7 @@ class _EditPageState extends State<EditPage> {
             ),
             SizedBox(height: 20),
             TextField(
-              maxLines: 5,
+              maxLines: 15,
               autocorrect: true,
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
