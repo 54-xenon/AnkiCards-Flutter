@@ -19,6 +19,7 @@ class _EditPageState extends State<EditPage> {
 
   @override
   void initState() {
+    // 初期化する -> 各テキストコントローラに、取得した文字列をセットする
     super.initState();
     _controllerQ = TextEditingController(text: widget.card.question);
     _controllerA = TextEditingController(text: widget.card.answer);
@@ -39,6 +40,7 @@ class _EditPageState extends State<EditPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("編集"),
+        backgroundColor: Theme.of(context).colorScheme.surface,
         elevation: 0,
       ),
       body: Padding(
@@ -46,45 +48,41 @@ class _EditPageState extends State<EditPage> {
         child: Column(
           children: [
             TextField(
+              maxLines: 2,
               autocorrect: true,
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.lightBlue,
-                  ),
+                  borderSide: BorderSide(),
                 ),
                 border: OutlineInputBorder()
               ),
               // コントローラーの設定
               controller: _controllerQ,
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             TextField(
               autocorrect: true,
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.lightBlue,
-                  ),
+                  borderSide: BorderSide(),
                 ),
                 border: OutlineInputBorder()
               ),
               controller: _controllerA,
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             TextField(
+              maxLines: 15,
               autocorrect: true,
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.lightBlue,
-                  ),
+                  borderSide: BorderSide(),
                 ),
                 border: OutlineInputBorder(),
               ),
               controller: _controllerE,
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

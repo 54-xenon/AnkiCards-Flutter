@@ -3,6 +3,7 @@ import 'package:ankicards/screens/home_page.dart';
 import 'package:ankicards/screens/list_page.dart';
 import 'package:ankicards/screens/setting_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 
 
@@ -19,23 +20,36 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // ローカライゼーション -> 日本語環境に最適化
+      supportedLocales: [Locale('English'), Locale('ja')],
+      localizationsDelegates:  [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       title: 'AnkiCards',
+      // ライトテーマ
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+          brightness: Brightness.light,
+        )
+      ),
+      // ダークテーマ
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+          brightness: Brightness.dark,
+        ),
+      ),
+      
+      // 現在のテーマ設定
+
+      // Navbarの表示を固定するために、homeにNavbarを指定する
       home: BottomNavigation(),
       debugShowCheckedModeBanner: true,
-      theme: ThemeData(
-        // テーマのカラーを指定する
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.lightBlue[100],
-          elevation: 0,
-        ),
-        // 背景色の指定
-        scaffoldBackgroundColor: Colors.white,
-        // floating ActionButton color
-        floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: Colors.lightBlue[100],
-        )
-        // テーマの切り替え(Light/Dark)
-      ),
     );
   }
 }
@@ -51,7 +65,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   static const _screens = [
     HomePage(),
     ListPage(),
-    SettingPage(),
+    // SettingPage(),
   ];
 
   int _selectIndex = 0;
@@ -60,13 +74,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
     return Scaffold(
       body: _screens[_selectIndex],
       bottomNavigationBar: NavigationBar(
-        backgroundColor: Colors.white,
         onDestinationSelected: (int index) {
           setState(() {
             _selectIndex = index;
           });
         },
-        indicatorColor: Colors.lightBlue[100],
+
         selectedIndex: _selectIndex,
         destinations: const <Widget>[
           NavigationDestination(
@@ -79,11 +92,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
             icon: Icon(Icons.list_outlined),
             label: 'リスト',
           ),
-          NavigationDestination(
-            selectedIcon: Icon(Icons.settings),
-            icon: Icon(Icons.settings_outlined),
-            label: '設定',
-          ),
+          // 一時的に設定ページを無効化 -> 実装が追いついていないから
+          // NavigationDestination(
+          //   selectedIcon: Icon(Icons.settings),
+          //   icon: Icon(Icons.settings_outlined),
+          //   label: '設定',
+          // ),
         ],
       ),
     );

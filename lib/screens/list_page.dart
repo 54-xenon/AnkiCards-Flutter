@@ -1,9 +1,9 @@
 import 'package:ankicards/screens/edit_page.dart';
+import 'package:ankicards/widget/cardContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:ankicards/repository/flashCard.dart';
 import 'package:ankicards/repository/flash_card_repository.dart';
 import 'package:ankicards/screens/create_page.dart';
-import 'package:ankicards/widget/cardCotainer.dart';
 
 class ListPage extends StatefulWidget {
   const ListPage({super.key});
@@ -91,7 +91,7 @@ class _ListPageState extends State<ListPage> {
               itemCount: cards.length,
               itemBuilder: (context, index) {
                 final card = cards[index];
-                return Cardcotainer(
+                return CardContainer(
                   question: card.question,
                   answer: card.answer,
                   explanation: card.explanation,

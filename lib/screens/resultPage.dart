@@ -11,6 +11,7 @@ class Resultpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         child: PopScope(
           // 戻るジェチャの無効化 -> popを無効化
@@ -60,8 +61,8 @@ class Resultpage extends StatelessWidget {
                     width: 200,
                     height: 60,
                     decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(12),
+                      color: Theme.of(context).colorScheme.primary,
+                      borderRadius: BorderRadius.circular(16),
                     ),
                     child: Row (
                       mainAxisAlignment: MainAxisAlignment.center,
