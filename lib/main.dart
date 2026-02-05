@@ -65,7 +65,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   static const _screens = [
     HomePage(),
     ListPage(),
-    // SettingPage(),
+    SettingPage(),
   ];
 
   int _selectIndex = 0;
@@ -92,12 +92,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
             icon: Icon(Icons.list_outlined),
             label: 'リスト',
           ),
-          // 一時的に設定ページを無効化 -> 実装が追いついていないから
-          // NavigationDestination(
-          //   selectedIcon: Icon(Icons.settings),
-          //   icon: Icon(Icons.settings_outlined),
-          //   label: '設定',
-          // ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.settings),
+            icon: Icon(Icons.settings_outlined),
+            label: '設定',
+          ),
         ],
       ),
     );

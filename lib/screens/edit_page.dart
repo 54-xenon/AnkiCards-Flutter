@@ -103,6 +103,13 @@ class _EditPageState extends State<EditPage> {
                     Navigator.pop(context, updateCard);
                   },
                 ),
+                SizedBox(width: 10),
+                MyButton(
+                  text: "生成",
+                  onPressed: () => {
+                    
+                  }
+                ),
               ],
             ),
           ],

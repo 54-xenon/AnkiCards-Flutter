@@ -84,6 +84,13 @@ class _CreatePageState extends State<CreatePage> {
                     Navigator.pop(context, newCard);
                   },
                 ),
+                SizedBox(width: 10),
+                MyButton(
+                  text: "生成",
+                  onPressed: () => {
+                    
+                  },
+                ),
               ],
             ),
           ],
