@@ -11,9 +11,6 @@ A few resources to get you started if this is your first Flutter project:
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
 ---
 # AnkiCards-Flutter
 AnkiCardsは、フラッシュカードを作成するときに面倒なことを軽減するために開発しました。煩わしいサインアップ、広告、ロックされた機能は存在しません！
@@ -25,23 +22,24 @@ AnkiCardsは以下の機能をサポートします。シンプルで本当に�
 - 広告なし
 - Material3のUI
 - 継続したアップデート
+- 結果の表示と保存
+- Geminiによる、カードの解説を自動で生成
+- アプリケーションのローカライズ(日本語環境への最適化)
 
 # 間もなく登場
 優先度順に並べてます。このほかにも改善してほしい所があれば、どんどんisue立ててください。できる限り対応したします。
 - テーマの自動切り替え
-- アプリケーションのローカライズ(日本語環境への最適化)
 - タグによる分類
 - ダッシュボード
-- 結果の表示と保存
 - iPadOSに最適化されたUI
 - 高度な復習機能(忘却曲線に基づくリマインド機能)
-- AppleInteligenceとGeminiによる、カードの解説を自動で生成
 - フォルダによってカードを整理
 
 # ストアへのリリース
 2026年中には、AppSotreでの公開を目指しています。
 
 # ディレクトリ構成
+```
 .
 ├── controller
 │   └── play_controller.dart
@@ -63,7 +61,4 @@ AnkiCardsは以下の機能をサポートします。シンプルで本当に�
 └── widget
     ├── buttonContainer.dart
     └── cardCotainer.dart
-
-
-
-
+```
