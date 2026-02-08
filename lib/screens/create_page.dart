@@ -1,3 +1,4 @@
+import 'package:ankicards/service/gemini_api_service.dart';
 import 'package:ankicards/widget/buttonContainer.dart';
 import 'package:flutter/material.dart';
 
@@ -9,9 +10,22 @@ class CreatePage extends StatefulWidget {
 }
 
 class _CreatePageState extends State<CreatePage> {
+  // gemini_api_serviceのインスタンスを作成する
+  final GeminiApiService _geminiApiService = GeminiApiService();
+
+
   final TextEditingController _controllerQ = TextEditingController();
   final TextEditingController _controllerA = TextEditingController();
   final TextEditingController _controllerE = TextEditingController();
+
+  // メモリ開放 -> 通常宣言はしないがメモリリーク防止のため
+  @override
+  void dispose() {
+    super.dispose();
+    _controllerQ.dispose();
+    _controllerA.dispose();
+    _controllerE.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,8 +101,16 @@ class _CreatePageState extends State<CreatePage> {
                 SizedBox(width: 10),
                 MyButton(
                   text: "生成",
-                  onPressed: () => {
-                    
+                  onPressed: () async {
+                    // 1. 入力された値を読み込む
+                    final question = _controllerQ.text;
+                    final answer = _controllerA.text;
+                    // 2. serviceを呼ぶ
+                    final example = await _geminiApiService.responseExample(question, answer);
+                    // 3. controllerに結果を流す
+                    setState(() {
+                      _controllerE.text = example;
+                    });
                   },
                 ),
               ],
