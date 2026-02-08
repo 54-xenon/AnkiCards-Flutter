@@ -1,64 +1,57 @@
-# ankicards
+# AnkiCards Flutter
 
-A new Flutter project.
+AnkiCardsは、フラッシュカード作成の「面倒」をなくすことを目指した学習アプリです。サインアップ不要、広告なし、必要な機能に絞ったシンプルな体験を提供します。
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
----
-# AnkiCards-Flutter
-AnkiCardsは、フラッシュカードを作成するときに面倒なことを軽減するために開発しました。煩わしいサインアップ、広告、ロックされた機能は存在しません！
-AnkiCardsは以下の機能をサポートします。シンプルで本当に必要な機能に重点を置き、毎日使いたくなるようなデザインのアプリです。
-
-# 機能(実装済み)
-- カードの作成、編集、削除
-- 出題機能
-- 広告なし
-- Material3のUI
-- 継続したアップデート
+## 特徴
+- カードの作成・編集・削除
+- 出題（学習）機能
 - 結果の表示と保存
-- Geminiによる、カードの解説を自動で生成
-- アプリケーションのローカライズ(日本語環境への最適化)
+- Geminiによるカード解説の自動生成
+- Material 3 UI
+- 広告なし
+- 日本語環境向けのローカライズ
 
-# 間もなく登場
-優先度順に並べてます。このほかにも改善してほしい所があれば、どんどんisue立ててください。できる限り対応したします。
+## これから追加予定
+優先度順に記載しています。要望はIssueで歓迎します。
 - テーマの自動切り替え
 - タグによる分類
 - ダッシュボード
 - iPadOSに最適化されたUI
-- 高度な復習機能(忘却曲線に基づくリマインド機能)
-- フォルダによってカードを整理
+- 忘却曲線に基づく高度な復習機能
+- フォルダによるカード整理
 
-# ストアへのリリース
-2026年中には、AppSotreでの公開を目指しています。
+## リリース予定
+2026年中のApp Store公開を目指しています。
 
-# ディレクトリ構成
+## 開発環境
+- Flutter SDK: ^3.7.0
+- Dart SDK: ^3.7.0
+
+## セットアップ
+```bash
+flutter pub get
 ```
-.
-├── controller
-│   └── play_controller.dart
+
+## 実行
+```bash
+flutter run
+```
+
+## テスト
+```bash
+flutter test
+```
+
+## ディレクトリ構成（主要）
+```
+lib/
+├── controller/
 ├── main.dart
-├── repository
-│   ├── flash_card_repository.dart
-│   ├── flashCard.dart
-│   ├── flashCard.g.dart
-│   ├── isar_setup.dart
-│   └── resultModel.dart
-├── screens
-│   ├── create_page.dart
-│   ├── edit_page.dart
-│   ├── home_page.dart
-│   ├── list_page.dart
-│   ├── play_page.dart
-│   ├── resultPage.dart
-│   └── setting_page.dart
-└── widget
-    ├── buttonContainer.dart
-    └── cardCotainer.dart
+├── repository/
+├── screens/
+├── service/
+└── widget/
 ```
+
+## ライセンス
+未設定（必要に応じて追記予定）
