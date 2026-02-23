@@ -2,27 +2,50 @@ import 'package:isar/isar.dart';
 import 'flashCard.dart';
 import 'isar_setup.dart';
 
+// タグ機能を管理するクラス
+class TagRepository {
+  // create a new card
+  Future<void> addTag(List tagDate) async{
 
+  }
+
+  // get a all tags
+  
+  // update a tag
+
+  // delete a tags
+
+  // delete a all tags
+  Future<void> deleteAllTags() async {
+    await isar.writeTxn(() async {
+      // .clearで全てのデータを削除する
+      await isar.tags.clear();
+    });
+  }
+}
+
+// フラッシュカードの処理を管理するclass
 class CardRepository {
   // create a new card
   Future<void> addCard(List cardData) async {
-    final newCard = FlashCard()
-       ..question = cardData[0]
-       ..answer = cardData[1]
-       ..explanation = cardData[2]
-       ..createTime = DateTime.now()
-       ..lastReviewedAt = null
-       ..lastupdateTime = null
-       ..isCorrect = null;
-       // カスケード記法は記述の最後にコロンをつける
-        // 一つのオブジェクトに対して、連続でメソッドやプロパティを連続で指定できる記法のこと
+    final newCard =
+        FlashCard()
+          ..question = cardData[0]
+          ..answer = cardData[1]
+          ..explanation = cardData[2]
+          ..createTime = DateTime.now()
+          ..lastReviewedAt = null
+          ..lastupdateTime = null
+          ..isCorrect = null;
+    // カスケード記法は記述の最後にコロンをつける
+    // 一つのオブジェクトに対して、連続でメソッドやプロパティを連続で指定できる記法のこと
     await isar.writeTxn(() async {
       // 引数cardDateから受けどったデータnewCardをDBに保存する
-      await isar.flashCards.put(newCard); 
+      await isar.flashCards.put(newCard);
     });
   }
 
-  // get a all cards 
+  // get a all cards
   Future<List<FlashCard>> getAllCards() async {
     return await isar.flashCards.where().findAll();
   }
