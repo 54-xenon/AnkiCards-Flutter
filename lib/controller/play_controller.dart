@@ -61,10 +61,15 @@ class PlayController {
       // true -> 分かったとしてカウント
       correctCount++;
       card.isCorrect = true;
+      // 回答した時刻を記録する
+      card.lastReviewedAt = DateTime.now();
     } else {
       // false -> 分からなかったとしてカウント
       incorrectCount++;
       card.isCorrect = false;
+      // 回答した時刻とかを記録する
+      card.lastReviewedAt = DateTime.now();
+
     }
 
     // DBに回答後の問題を保存

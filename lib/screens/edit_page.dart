@@ -98,7 +98,8 @@ class _EditPageState extends State<EditPage> {
                         widget.card
                           ..question = _controllerQ.text
                           ..answer = _controllerA.text
-                          ..explanation = _controllerE.text;
+                          ..explanation = _controllerE.text
+                          ..lastupdateTime = DateTime.now();
 
                     Navigator.pop(context, updateCard);
                   },
