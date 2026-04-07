@@ -22,7 +22,7 @@ class _ListPageState extends State<ListPage> {
     _loadCards();
   }
 
-  // カードの読み込む
+  // カードの読み込むメソッド
   void _loadCards() {
     _flashCardsFuture = _cardRepository.getAllCards();
   }

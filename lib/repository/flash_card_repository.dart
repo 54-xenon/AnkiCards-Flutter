@@ -6,7 +6,7 @@ import 'isar_setup.dart';
 class TagRepository {
   // create a new card
   Future<void> addTag(List tagDate) async{
-
+    // タグをDBに保存するメソッド
   }
 
   // get a all tags
@@ -37,7 +37,7 @@ class CardRepository {
           ..lastReviewedAt = null
           ..lastupdateTime = null
           ..isCorrect = null;
-    // カスケード記法は記述の最後にコロンをつける
+    // カスケード記法は記述の最後にコロンをつける -> これをつけないとエラーになる
     // 一つのオブジェクトに対して、連続でメソッドやプロパティを連続で指定できる記法のこと
     await isar.writeTxn(() async {
       // 引数cardDateから受けどったデータnewCardをDBに保存する

@@ -33,8 +33,12 @@ class FlashCard {
 // タグ付けした情報を保持するため
 @collection
 class Tag {
+  // 自動でインクリメントするID
   Id id = Isar.autoIncrement;
+  // 名前 -> タグの名前
   late String name;
+  // 表示カラー -> 複数のタグが同じ色だと見分けることができないから、任意の色を割り当てることができる。
   late String? color;
 }
 
+// デッキ -> カードを格納する親フォルダ的なもの(カードの専用のidを持たせて、一致するカードをそのフォルダに属しているとすり)

@@ -19,7 +19,6 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // AnkiCardsのタイトル的なな何か -> ダッシュボード機能が充実してくると削除する予定
               Container(
                 width: double.infinity,
                 height: 100,
