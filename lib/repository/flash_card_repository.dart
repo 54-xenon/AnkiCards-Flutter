@@ -24,6 +24,7 @@ class TagRepository {
   }
 }
 
+
 // フラッシュカードの処理を管理するclass
 class CardRepository {
   // create a new card

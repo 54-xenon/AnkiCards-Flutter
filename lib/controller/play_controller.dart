@@ -30,7 +30,7 @@ class PlayController {
   Future<void> inisilaize() async{
     // 保存したカードの取得
     _playList = await _cardRepository.getAllCards();
-    // カードのランダム　
+    // カードのランダムに並び替える
     _playList.shuffle();
     // 各種変数の初期化
     _currentIndex = 0;
