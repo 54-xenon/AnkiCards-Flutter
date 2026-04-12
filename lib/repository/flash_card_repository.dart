@@ -2,6 +2,20 @@ import 'package:isar/isar.dart';
 import 'flashCard.dart';
 import 'isar_setup.dart';
 
+class CardDraft {
+  final String question;
+  final String answer;
+  final String explanation;
+  final List<String> tagNames;
+
+  CardDraft({
+    required this.question,
+    required this.answer,
+    required this.explanation,
+    required this.tagNames,
+  });
+}
+
 // タグ機能を管理するクラス
 class TagRepository {
   // タグを作成
@@ -69,13 +83,45 @@ class TagRepository {
 
 // フラッシュカードの処理を管理するclass
 class CardRepository {
+  List<String> _normalizeTagNames(List<String> tagNames) {
+    final normalizedTagNames = <String>{};
+    for (final tagName in tagNames) {
+      final normalizedTagName = tagName.trim();
+      if (normalizedTagName.isEmpty) {
+        continue;
+      }
+      normalizedTagNames.add(normalizedTagName);
+    }
+    return normalizedTagNames.toList();
+  }
+
+  Future<List<Tag>> _resolveTags(List<String> tagNames) async {
+    final tags = <Tag>[];
+
+    for (final tagName in _normalizeTagNames(tagNames)) {
+      final existingTag = await isar.tags.filter().nameEqualTo(tagName).findFirst();
+      if (existingTag != null) {
+        tags.add(existingTag);
+        continue;
+      }
+
+      final newTag = Tag()
+        ..name = tagName
+        ..color = null;
+      await isar.tags.put(newTag);
+      tags.add(newTag);
+    }
+
+    return tags;
+  }
+
   // カードを作成
-  Future<void> addCard(List cardData) async {
+  Future<void> addCard(CardDraft cardData) async {
     final newCard =
         FlashCard()
-          ..question = cardData[0]
-          ..answer = cardData[1]
-          ..explanation = cardData[2]
+          ..question = cardData.question
+          ..answer = cardData.answer
+          ..explanation = cardData.explanation
           ..createTime = DateTime.now()
           ..lastReviewedAt = null
           ..lastupdateTime = null
@@ -86,6 +132,9 @@ class CardRepository {
     await isar.writeTxn(() async {
       // 引数cardDateから受けどったデータnewCardをDBに保存する
       await isar.flashCards.put(newCard);
+      final tags = await _resolveTags(cardData.tagNames);
+      newCard.tags.addAll(tags);
+      await newCard.tags.save();
     });
   }
 
@@ -146,6 +195,22 @@ class CardRepository {
     // DBに保存したデータを取り出す
     await isar.writeTxn(() async {
       await isar.flashCards.put(flashCard);
+    });
+  }
+
+  // カード更新時にタグを同期
+  Future<void> updateCardWithTags({
+    required FlashCard flashCard,
+    required List<String> tagNames,
+  }) async {
+    await isar.writeTxn(() async {
+      await isar.flashCards.put(flashCard);
+
+      final tags = await _resolveTags(tagNames);
+      await flashCard.tags.load();
+      flashCard.tags.clear();
+      flashCard.tags.addAll(tags);
+      await flashCard.tags.save();
     });
   }
 

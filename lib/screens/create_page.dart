@@ -1,4 +1,5 @@
 import 'package:ankicards/service/gemini_api_service.dart';
+import 'package:ankicards/repository/flash_card_repository.dart';
 import 'package:ankicards/widget/buttonContainer.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,7 @@ class _CreatePageState extends State<CreatePage> {
   final TextEditingController _controllerQ = TextEditingController();
   final TextEditingController _controllerA = TextEditingController();
   final TextEditingController _controllerE = TextEditingController();
+  final TextEditingController _controllerTags = TextEditingController();
 
   // メモリ開放 -> 通常宣言はしないがメモリリーク防止のため
   @override
@@ -25,6 +27,7 @@ class _CreatePageState extends State<CreatePage> {
     _controllerQ.dispose();
     _controllerA.dispose();
     _controllerE.dispose();
+    _controllerTags.dispose();
   }
 
   @override
@@ -78,6 +81,18 @@ class _CreatePageState extends State<CreatePage> {
               ),
             ),
             SizedBox(height: 20),
+            TextField(
+              autocorrect: true,
+              controller: _controllerTags,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(),
+                ),
+                hintText: "タグ（, 区切り）",
+              ),
+            ),
+            SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -93,8 +108,19 @@ class _CreatePageState extends State<CreatePage> {
                     final question = _controllerQ.text;
                     final answer = _controllerA.text;
                     final explanation = _controllerE.text;
+                    final tags =
+                        _controllerTags.text
+                            .split(',')
+                            .map((tag) => tag.trim())
+                            .where((tag) => tag.isNotEmpty)
+                            .toList();
 
-                    final newCard = [question, answer, explanation];
+                    final newCard = CardDraft(
+                      question: question,
+                      answer: answer,
+                      explanation: explanation,
+                      tagNames: tags,
+                    );
                     Navigator.pop(context, newCard);
                   },
                 ),

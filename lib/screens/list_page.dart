@@ -28,7 +28,7 @@ class _ListPageState extends State<ListPage> {
   }
 
   // カードの追加
-  Future<void> _addCard(List newCard) async {
+  Future<void> _addCard(CardDraft newCard) async {
     await _cardRepository.addCard(newCard);
     setState(() {
       _loadCards();
@@ -45,13 +45,16 @@ class _ListPageState extends State<ListPage> {
 
   // カードの変種後の更新
   Future<void> _updateCard(FlashCard flashCard) async {
-    final updateCard = await Navigator.push<FlashCard>(
+    final updateResult = await Navigator.push<EditCardResult>(
       context,
       MaterialPageRoute(builder: (_) => EditPage(card: flashCard)),
     );
 
-    if (updateCard != null) {
-      await _cardRepository.updateCard(updateCard);
+    if (updateResult != null) {
+      await _cardRepository.updateCardWithTags(
+        flashCard: updateResult.card,
+        tagNames: updateResult.tagNames,
+      );
       setState(() {
         _loadCards();
       });
@@ -108,7 +111,7 @@ class _ListPageState extends State<ListPage> {
         label: Text('作成'),
         icon: Icon(Icons.edit),
         onPressed: () async {
-          final newCard = await Navigator.push(
+          final newCard = await Navigator.push<CardDraft>(
             context,
             MaterialPageRoute(builder: (_) => const CreatePage()),
           );
