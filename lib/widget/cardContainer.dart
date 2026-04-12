@@ -39,7 +39,7 @@ class CardContainer extends StatelessWidget {
           ],
         ),
         child: SizedBox(
-          // Slidabelを使用すると、何故か横幅が小さくなるからその対策として、double.infinity(限界まで横幅を大きくする)
+          // カードのサイズを固定するために、横幅いっぱいに指定しおく
           width: double.infinity,
           child: Card(
             elevation: 0,
@@ -65,9 +65,7 @@ class CardContainer extends StatelessWidget {
                     ),
                     const SizedBox(height: 12),
                     /// 答え
-                    Text(
-                      answer,
-                    ),
+                    Text("答え: $answer"),
           
                     if (explanation.isNotEmpty) ...[
                       const SizedBox(height: 8),

@@ -10,7 +10,7 @@ late final Isar isar;
 Future<void> initializeIsar() async {
   final dir = await getApplicationDocumentsDirectory();
   isar = await Isar.open(
-    [FlashCardSchema], 
+    [FlashCardSchema, TagSchema], 
     directory: dir.path,
   );
 }

@@ -30,7 +30,7 @@ class PlayController {
   Future<void> inisilaize() async{
     // 保存したカードの取得
     _playList = await _cardRepository.getAllCards();
-    // カードのランダム　
+    // カードのランダムに並び替える
     _playList.shuffle();
     // 各種変数の初期化
     _currentIndex = 0;
@@ -61,10 +61,15 @@ class PlayController {
       // true -> 分かったとしてカウント
       correctCount++;
       card.isCorrect = true;
+      // 回答した時刻を記録する
+      card.lastReviewedAt = DateTime.now();
     } else {
       // false -> 分からなかったとしてカウント
       incorrectCount++;
       card.isCorrect = false;
+      // 回答した時刻とかを記録する
+      card.lastReviewedAt = DateTime.now();
+
     }
 
     // DBに回答後の問題を保存

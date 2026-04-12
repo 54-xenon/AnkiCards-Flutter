@@ -1,6 +1,14 @@
 import 'package:ankicards/repository/flashCard.dart';
+import 'package:ankicards/repository/flash_card_repository.dart';
 import 'package:ankicards/widget/buttonContainer.dart';
 import 'package:flutter/material.dart';
+
+class EditCardResult {
+  final FlashCard card;
+  final List<String> tagNames;
+
+  EditCardResult({required this.card, required this.tagNames});
+}
 
 class EditPage extends StatefulWidget {
   final FlashCard card;
@@ -11,11 +19,14 @@ class EditPage extends StatefulWidget {
 }
 
 class _EditPageState extends State<EditPage> {
+  final CardRepository _cardRepository = CardRepository();
+
   // テキストコントローラーを設定
   // late -> lateを使うことで代入を後回しにすることができる
   late TextEditingController _controllerQ;
   late TextEditingController _controllerA;
   late TextEditingController _controllerE;
+  late TextEditingController _controllerTags;
 
   @override
   void initState() {
@@ -24,6 +35,18 @@ class _EditPageState extends State<EditPage> {
     _controllerQ = TextEditingController(text: widget.card.question);
     _controllerA = TextEditingController(text: widget.card.answer);
     _controllerE = TextEditingController(text: widget.card.explanation);
+    _controllerTags = TextEditingController();
+    _loadTags();
+  }
+
+  Future<void> _loadTags() async {
+    final tags = await _cardRepository.getTagsForCard(widget.card.id);
+    if (!mounted) {
+      return;
+    }
+    setState(() {
+      _controllerTags.text = tags.map((tag) => tag.name).join(', ');
+    });
   }
 
   @override
@@ -32,6 +55,7 @@ class _EditPageState extends State<EditPage> {
     _controllerQ.dispose();
     _controllerA.dispose();
     _controllerE.dispose();
+    _controllerTags.dispose();
     super.dispose();
   }
 
@@ -83,6 +107,18 @@ class _EditPageState extends State<EditPage> {
               controller: _controllerE,
             ),
             SizedBox(height: 20),
+            TextField(
+              autocorrect: true,
+              decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(),
+                ),
+                border: OutlineInputBorder(),
+                hintText: 'タグ（, 区切り）',
+              ),
+              controller: _controllerTags,
+            ),
+            SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -98,9 +134,19 @@ class _EditPageState extends State<EditPage> {
                         widget.card
                           ..question = _controllerQ.text
                           ..answer = _controllerA.text
-                          ..explanation = _controllerE.text;
+                          ..explanation = _controllerE.text
+                          ..lastupdateTime = DateTime.now();
+                    final tagNames =
+                        _controllerTags.text
+                            .split(',')
+                            .map((tag) => tag.trim())
+                            .where((tag) => tag.isNotEmpty)
+                            .toList();
 
-                    Navigator.pop(context, updateCard);
+                    Navigator.pop(
+                      context,
+                      EditCardResult(card: updateCard, tagNames: tagNames),
+                    );
                   },
                 ),
                 SizedBox(width: 10),
