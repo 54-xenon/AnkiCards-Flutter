@@ -1,5 +1,4 @@
 import 'package:isar/isar.dart';
-
 import 'flashCard.dart';
 import 'isar_setup.dart';
 
