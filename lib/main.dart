@@ -45,7 +45,6 @@ class MyApp extends StatelessWidget {
         ),
       ),
       
-      // 現在のテーマ設定
 
       // Navbarの表示を固定するために、homeにNavbarを指定する
       home: BottomNavigation(),

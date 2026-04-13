@@ -83,34 +83,6 @@ class Resultpage extends StatelessWidget {
                     ),
                   ),
                 ),
-          
-                // GestureDetector(
-                //   child: Container(
-                //     width: 200,
-                //     height: 60,
-                //     decoration: BoxDecoration(
-                //       border: Border.all(
-                //         width: 3,
-                //       ),
-                //       borderRadius: BorderRadius.circular(12),
-                //     ),
-                //     child: Row(
-                //       mainAxisAlignment: MainAxisAlignment.center,
-                //       children: [
-                //         Icon(
-                //           Icons.replay,
-                //         ),
-                //         Text(
-                //           "リトライ",
-                //           style: TextStyle(
-                //             fontSize: 20,
-                //             fontWeight: FontWeight.bold,
-                //           ),
-                //         )
-                //       ],
-                //     ),
-                //   ),
-                // )
               ],
             ),
           ),

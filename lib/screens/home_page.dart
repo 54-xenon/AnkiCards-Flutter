@@ -47,7 +47,6 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              // カードの総数と、連続達成日、今現在の正答率を表示する
 
               // 出題開始ボタン
               GestureDetector(
