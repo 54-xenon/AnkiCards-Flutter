@@ -1,6 +1,5 @@
 import 'package:ankicards/service/gemini_api_service.dart';
 import 'package:ankicards/repository/flash_card_repository.dart';
-import 'package:ankicards/widget/buttonContainer.dart';
 import 'package:flutter/material.dart';
 
 class CreatePage extends StatefulWidget {
@@ -11,136 +10,162 @@ class CreatePage extends StatefulWidget {
 }
 
 class _CreatePageState extends State<CreatePage> {
-  // gemini_api_serviceのインスタンスを作成する
   final GeminiApiService _geminiApiService = GeminiApiService();
-
 
   final TextEditingController _controllerQ = TextEditingController();
   final TextEditingController _controllerA = TextEditingController();
   final TextEditingController _controllerE = TextEditingController();
   final TextEditingController _controllerTags = TextEditingController();
 
-  // メモリ開放 -> 通常宣言はしないがメモリリーク防止のため
+  bool _isGenerating = false;
+
   @override
   void dispose() {
-    super.dispose();
     _controllerQ.dispose();
     _controllerA.dispose();
     _controllerE.dispose();
     _controllerTags.dispose();
+    super.dispose();
+  }
+
+  Future<void> _generate() async {
+    setState(() => _isGenerating = true);
+    try {
+      final example = await _geminiApiService.responseExample(
+        _controllerQ.text,
+        _controllerA.text,
+      );
+      setState(() => _controllerE.text = example);
+    } finally {
+      setState(() => _isGenerating = false);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("新規作成"),
+        title: const Text('新規作成'),
         elevation: 0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextField(
-              maxLines: 2,
+              maxLines: 3,
+              minLines: 2,
               autocorrect: true,
               controller: _controllerQ,
-              decoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(), 
+              decoration: const InputDecoration(
+                labelText: '質問',
+                hintText: '問題文を入力してください',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
                 ),
-                border: OutlineInputBorder(),
-                hintText: "質問",
+                alignLabelWithHint: true,
               ),
             ),
-            SizedBox(height: 20),
-            // answer
+            const SizedBox(height: 16),
             TextField(
               autocorrect: true,
               controller: _controllerA,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(),
+              decoration: const InputDecoration(
+                labelText: '回答',
+                hintText: '答えを入力してください',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
                 ),
-                hintText: "回答",
               ),
             ),
-            SizedBox(height: 20),
-            // explation
+            const SizedBox(height: 16),
             TextField(
-              maxLines: 15,
+              maxLines: 10,
+              minLines: 5,
               autocorrect: true,
               controller: _controllerE,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(),
+              decoration: const InputDecoration(
+                labelText: '解説',
+                hintText: '解説を入力してください',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
                 ),
-                hintText: "解説",
+                alignLabelWithHint: true,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 16),
             TextField(
               autocorrect: true,
               controller: _controllerTags,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(),
+              decoration: const InputDecoration(
+                labelText: 'タグ',
+                hintText: 'タグ1, タグ2, タグ3（カンマ区切り）',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
                 ),
-                hintText: "タグ（, 区切り）",
+                prefixIcon: Icon(Icons.label_outline),
               ),
             ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                MyButton(
-                  text: "キャンセル",
-                  onPressed: () => Navigator.pop(context),
+            const SizedBox(height: 24),
+            FilledButton.icon(
+              onPressed: _isGenerating ? null : _generate,
+              icon: _isGenerating
+                  ? const SizedBox(
+                      width: 18,
+                      height: 18,
+                      child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                    )
+                  : const Icon(Icons.auto_awesome),
+              label: Text(_isGenerating ? '生成中...' : 'AIで解説を自動生成'),
+              style: FilledButton.styleFrom(
+                minimumSize: const Size(double.infinity, 52),
+                backgroundColor: colorScheme.secondaryContainer,
+                foregroundColor: colorScheme.onSecondaryContainer,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
                 ),
-                SizedBox(width: 10),
-                MyButton(
-                  text: "保存",
-                  onPressed: () {
-                    // 直接値を渡すのではなく、一度定数を定義してそこに移して直接contextの後に渡す引数は1つだけにする
-                    final question = _controllerQ.text;
-                    final answer = _controllerA.text;
-                    final explanation = _controllerE.text;
-                    final tags =
-                        _controllerTags.text
-                            .split(',')
-                            .map((tag) => tag.trim())
-                            .where((tag) => tag.isNotEmpty)
-                            .toList();
-
-                    final newCard = CardDraft(
-                      question: question,
-                      answer: answer,
-                      explanation: explanation,
-                      tagNames: tags,
-                    );
-                    Navigator.pop(context, newCard);
-                  },
-                ),
-                SizedBox(width: 10),
-                MyButton(
-                  text: "生成",
-                  onPressed: () async {
-                    // 1. 入力された値を読み込む
-                    final question = _controllerQ.text;
-                    final answer = _controllerA.text;
-                    // 2. serviceを呼ぶ
-                    final example = await _geminiApiService.responseExample(question, answer);
-                    // 3. controllerに結果を流す
-                    setState(() {
-                      _controllerE.text = example;
-                    });
-                  },
-                ),
-              ],
+              ),
             ),
+            const SizedBox(height: 12),
+            FilledButton.icon(
+              onPressed: () {
+                final tags = _controllerTags.text
+                    .split(',')
+                    .map((tag) => tag.trim())
+                    .where((tag) => tag.isNotEmpty)
+                    .toList();
+
+                Navigator.pop(
+                  context,
+                  CardDraft(
+                    question: _controllerQ.text,
+                    answer: _controllerA.text,
+                    explanation: _controllerE.text,
+                    tagNames: tags,
+                  ),
+                );
+              },
+              icon: const Icon(Icons.save_outlined),
+              label: const Text(
+                '保存',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              style: FilledButton.styleFrom(
+                minimumSize: const Size(double.infinity, 52),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('キャンセル'),
+            ),
+            const SizedBox(height: 8),
           ],
         ),
       ),
