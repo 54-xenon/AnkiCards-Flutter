@@ -1,6 +1,5 @@
 import 'package:ankicards/controller/play_controller.dart';
 import 'package:ankicards/screens/resultPage.dart';
-import 'package:ankicards/widget/buttonContainer.dart';
 import 'package:flutter/material.dart';
 
 class PlayPage extends StatefulWidget {
@@ -11,117 +10,203 @@ class PlayPage extends StatefulWidget {
 }
 
 class _PlayPageState extends State<PlayPage> {
-  // controllerのインスタンス化
   final PlayController _controller = PlayController();
   bool _isLoading = true;
-  late bool showCard;
+  bool _showAnswer = false;
 
   Future<void> _initialize() async {
-    await _controller.inisilaize();
-    setState(() {
-      _isLoading = false;
-    });
+    await _controller.initialize();
+    if (!mounted) return;
+    if (_controller.totalQuestionCount == 0) {
+      Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('先にカードを追加してください')),
+      );
+      return;
+    }
+    setState(() => _isLoading = false);
   }
 
-  // 初期化
   @override
   void initState() {
     super.initState();
-    // initStateにasync/awaitをつけることはできないから、メソッドとして切り出すことで初期化を完了するようにする
     _initialize();
-    showCard = false;
+  }
+
+  Future<void> _answer(bool isCorrect) async {
+    await _controller.answer(isCorrect);
+    if (!mounted) return;
+    if (_controller.isFinished) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Resultpage(result: _controller.getResult()),
+        ),
+      );
+      return;
+    }
+    setState(() => _showAnswer = false);
   }
 
   @override
   Widget build(BuildContext context) {
     if (_isLoading) {
-      return Scaffold(body: Center(child: CircularProgressIndicator()));
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
+
+    final colorScheme = Theme.of(context).colorScheme;
+    final progress = _controller.currentQuestionCount / _controller.totalQuestionCount;
+
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      appBar: AppBar(),
+      appBar: AppBar(
+        elevation: 0,
+        title: Text(
+          '${_controller.currentQuestionCount} / ${_controller.totalQuestionCount}',
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(6),
+          child: LinearProgressIndicator(
+            value: progress,
+            minHeight: 6,
+            borderRadius: BorderRadius.zero,
+          ),
+        ),
+      ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // progress bar
-              Container(
-                height: 100,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  // color: Colors.amber[100],
-                ),
-              ),
-              // flashcard
-              GestureDetector(
-                onTap: () {
-                  // setStateを使って、continerに持たせておるboolを反転させる
-                  // setStateがないと再描画されない
-                  setState(() {
-                    showCard = !showCard;
-                  });
-                },
-                child: Container(
-                  height: 350,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Theme.of(context).colorScheme.surfaceContainer,
-                  ),
-                  child: Center(
-                    child: Text(
-                      showCard
-                          ? _controller.currentCard.answer
-                          : _controller.currentCard.question,
-                      // "日本で一番高い山は?",
-                      style: TextStyle(fontSize: 30),
+              // カード
+              Expanded(
+                child: GestureDetector(
+                  onTap: () => setState(() => _showAnswer = !_showAnswer),
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: _showAnswer
+                          ? colorScheme.tertiaryContainer
+                          : colorScheme.surfaceContainer,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: Column(
+                        children: [
+                          // Q / A ラベル
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 4,
+                              ),
+                              decoration: BoxDecoration(
+                                color: _showAnswer
+                                    ? colorScheme.tertiary
+                                    : colorScheme.primary,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Text(
+                                _showAnswer ? '回答' : '質問',
+                                style: TextStyle(
+                                  color: _showAnswer
+                                      ? colorScheme.onTertiary
+                                      : colorScheme.onPrimary,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13,
+                                ),
+                              ),
+                            ),
+                          ),
+                          // カード本文
+                          Expanded(
+                            child: Center(
+                              child: Text(
+                                _showAnswer
+                                    ? _controller.currentCard.answer
+                                    : _controller.currentCard.question,
+                                style: const TextStyle(fontSize: 24),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                          // ヒント
+                          if (!_showAnswer)
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.touch_app_outlined,
+                                  size: 16,
+                                  color: colorScheme.onSurfaceVariant,
+                                ),
+                                const SizedBox(width: 4),
+                                Text(
+                                  'タップして答えを確認',
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    color: colorScheme.onSurfaceVariant,
+                                  ),
+                                ),
+                              ],
+                            ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-              // button -> true or false
-              Container(
-                height: 100,
-                decoration: BoxDecoration(
-                  // color: Colors.amberAccent,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    MyButton(
-                      text: '分からない',
-                      onPressed: () async {
-                        await _controller.answer(false);
-                        if (_controller.isFinished) {
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Resultpage(result: _controller.getResult(),)));
-                          // returnを置くことで、setStateの処理をジャンプして、存在しないインデックスへのアクセスを防ぐ為に必要となる
-                          return; 
-                        }
-                        setState(() {
-                          // もし、回答を表示した場合に次の問題文の答えが見えないようにするため
-                          showCard = false;
-                        });
-                      },
+
+              const SizedBox(height: 24),
+
+              // 回答ボタン
+              Row(
+                children: [
+                  Expanded(
+                    child: FilledButton.icon(
+                      onPressed: () => _answer(false),
+                      icon: const Icon(Icons.close_rounded),
+                      label: const Text(
+                        '分からない',
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      style: FilledButton.styleFrom(
+                        minimumSize: const Size(0, 60),
+                        backgroundColor: colorScheme.errorContainer,
+                        foregroundColor: colorScheme.onErrorContainer,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                      ),
                     ),
-                    MyButton(
-                      text: '分かった',
-                      onPressed: () async {
-                        await _controller.answer(true);
-                        if (_controller.isFinished) {
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Resultpage(result: _controller.getResult(),)));
-                          return;
-                        }
-                        setState(() {
-                          showCard = false;
-                        });
-                        // 状態を更新する必要がある
-                      },
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: FilledButton.icon(
+                      onPressed: () => _answer(true),
+                      icon: const Icon(Icons.check_rounded),
+                      label: const Text(
+                        '分かった',
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      style: FilledButton.styleFrom(
+                        minimumSize: const Size(0, 60),
+                        backgroundColor: colorScheme.primaryContainer,
+                        foregroundColor: colorScheme.onPrimaryContainer,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
+
+              const SizedBox(height: 8),
             ],
           ),
         ),

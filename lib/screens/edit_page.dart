@@ -1,6 +1,6 @@
 import 'package:ankicards/repository/flashCard.dart';
 import 'package:ankicards/repository/flash_card_repository.dart';
-import 'package:ankicards/widget/buttonContainer.dart';
+import 'package:ankicards/widget/card_form_fields.dart';
 import 'package:flutter/material.dart';
 
 class EditCardResult {
@@ -21,8 +21,6 @@ class EditPage extends StatefulWidget {
 class _EditPageState extends State<EditPage> {
   final CardRepository _cardRepository = CardRepository();
 
-  // テキストコントローラーを設定
-  // late -> lateを使うことで代入を後回しにすることができる
   late TextEditingController _controllerQ;
   late TextEditingController _controllerA;
   late TextEditingController _controllerE;
@@ -30,7 +28,6 @@ class _EditPageState extends State<EditPage> {
 
   @override
   void initState() {
-    // 初期化する -> 各テキストコントローラに、取得した文字列をセットする
     super.initState();
     _controllerQ = TextEditingController(text: widget.card.question);
     _controllerA = TextEditingController(text: widget.card.answer);
@@ -41,16 +38,13 @@ class _EditPageState extends State<EditPage> {
 
   Future<void> _loadTags() async {
     final tags = await _cardRepository.getTagsForCard(widget.card.id);
-    if (!mounted) {
-      return;
-    }
+    if (!mounted) return;
     setState(() {
       _controllerTags.text = tags.map((tag) => tag.name).join(', ');
     });
   }
 
   @override
-  // メモリリリーク防止 -> 処理が終わるとメモリ解放(明示的にメモリ解放を宣言しておく)
   void dispose() {
     _controllerQ.dispose();
     _controllerA.dispose();
@@ -63,101 +57,73 @@ class _EditPageState extends State<EditPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("編集"),
-        backgroundColor: Theme.of(context).colorScheme.surface,
+        title: const Text('編集'),
         elevation: 0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            TextField(
-              maxLines: 2,
-              autocorrect: true,
-              decoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(),
-                ),
-                border: OutlineInputBorder()
-              ),
-              // コントローラーの設定
-              controller: _controllerQ,
+            CardFormFields(
+              questionController: _controllerQ,
+              answerController: _controllerA,
+              explanationController: _controllerE,
+              tagsController: _controllerTags,
             ),
-            SizedBox(height: 20),
-            TextField(
-              autocorrect: true,
-              decoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(),
-                ),
-                border: OutlineInputBorder()
-              ),
-              controller: _controllerA,
-            ),
-            SizedBox(height: 20),
-            TextField(
-              maxLines: 15,
-              autocorrect: true,
-              decoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(),
-                ),
-                border: OutlineInputBorder(),
-              ),
-              controller: _controllerE,
-            ),
-            SizedBox(height: 20),
-            TextField(
-              autocorrect: true,
-              decoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(),
-                ),
-                border: OutlineInputBorder(),
-                hintText: 'タグ（, 区切り）',
-              ),
-              controller: _controllerTags,
-            ),
-            SizedBox(height: 20),
+            const SizedBox(height: 32),
+            // ボタン
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                MyButton(
-                  text: "キャンセル",
-                  onPressed: () => Navigator.pop(context),
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: () => Navigator.pop(context),
+                    style: OutlinedButton.styleFrom(
+                      minimumSize: const Size(0, 52),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: const Text('キャンセル'),
+                  ),
                 ),
-                SizedBox(width: 8),
-                MyButton(
-                  text: "保存",
-                  onPressed: () {
-                    final updateCard =
-                        widget.card
-                          ..question = _controllerQ.text
-                          ..answer = _controllerA.text
-                          ..explanation = _controllerE.text
-                          ..lastupdateTime = DateTime.now();
-                    final tagNames =
-                        _controllerTags.text
-                            .split(',')
-                            .map((tag) => tag.trim())
-                            .where((tag) => tag.isNotEmpty)
-                            .toList();
+                const SizedBox(width: 12),
+                Expanded(
+                  flex: 2,
+                  child: FilledButton(
+                    onPressed: () {
+                      final updatedCard = widget.card
+                        ..question = _controllerQ.text
+                        ..answer = _controllerA.text
+                        ..explanation = _controllerE.text
+                        ..lastupdateTime = DateTime.now();
 
-                    Navigator.pop(
-                      context,
-                      EditCardResult(card: updateCard, tagNames: tagNames),
-                    );
-                  },
-                ),
-                SizedBox(width: 10),
-                MyButton(
-                  text: "生成",
-                  onPressed: () => {
-                    
-                  }
+                      final tagNames = _controllerTags.text
+                          .split(',')
+                          .map((tag) => tag.trim())
+                          .where((tag) => tag.isNotEmpty)
+                          .toList();
+
+                      Navigator.pop(
+                        context,
+                        EditCardResult(card: updatedCard, tagNames: tagNames),
+                      );
+                    },
+                    style: FilledButton.styleFrom(
+                      minimumSize: const Size(0, 52),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: const Text(
+                      '保存',
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ),
               ],
             ),
+            const SizedBox(height: 16),
           ],
         ),
       ),
