@@ -19,23 +19,21 @@ class PlayController {
   // DBかららカードを読み込むメソッドを使いたいからCardRepositoryからインスタンス化
   final CardRepository _cardRepository = CardRepository();
   // late -> 後で初期化したい時に使う
-  List<dynamic> _playList = [];
-  // 出題管理用のリスト
+  List<FlashCard> _playList = [];
   int _currentIndex = 0;
-  // 結果のカウント
-  int correctCount = 0; // -> true
-  int incorrectCount = 0; // -> false
+  int _correctCount = 0;
+  int _incorrectCount = 0;
 
   // 初期化
-  Future<void> inisilaize() async{
+  Future<void> initialize() async {
     // 保存したカードの取得
     _playList = await _cardRepository.getAllCards();
     // カードのランダムに並び替える
     _playList.shuffle();
     // 各種変数の初期化
     _currentIndex = 0;
-    correctCount = 0;
-    incorrectCount = 0;
+    _correctCount = 0;
+    _incorrectCount = 0;
   }
 
   // 現在出題中のカードを取得
@@ -59,13 +57,11 @@ class PlayController {
     // 結果のカウント
     if (isCorrect) {
       // true -> 分かったとしてカウント
-      correctCount++;
+      _correctCount++;
       card.isCorrect = true;
-      // 回答した時刻を記録する
       card.lastReviewedAt = DateTime.now();
     } else {
-      // false -> 分からなかったとしてカウント
-      incorrectCount++;
+      _incorrectCount++;
       card.isCorrect = false;
       // 回答した時刻とかを記録する
       card.lastReviewedAt = DateTime.now();
@@ -85,17 +81,11 @@ class PlayController {
   }
 
   // 結果の表示 -> 結果を表示するためのデータを記録
-  resultModel getResult() {
-    /* 
-      保存するプロパティ
-      - correct -> 正解した問題
-      - wrong -> 不正解の問題
-      - total -> 回答したトータルの問題(correct + wrong = totalとする)
-    */
-    return resultModel(
-      correct: correctCount,
-      wrong: incorrectCount,
-      total: (correctCount + incorrectCount),
+  ResultModel getResult() {
+    return ResultModel(
+      correct: _correctCount,
+      wrong: _incorrectCount,
+      total: _correctCount + _incorrectCount,
     );
   }
   

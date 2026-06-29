@@ -1,6 +1,6 @@
 // 必要なパッケージをインポート
   // DBのイニシャライザを記述するファイル -> 別ファイルにする必要はないかもだけどせっかくだから
-import 'package:isar/isar.dart';
+import 'package:isar_community/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'flashCard.dart';
 

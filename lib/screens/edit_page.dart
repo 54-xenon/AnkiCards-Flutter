@@ -1,5 +1,6 @@
 import 'package:ankicards/repository/flashCard.dart';
 import 'package:ankicards/repository/flash_card_repository.dart';
+import 'package:ankicards/widget/card_form_fields.dart';
 import 'package:flutter/material.dart';
 
 class EditCardResult {
@@ -64,61 +65,11 @@ class _EditPageState extends State<EditPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            TextField(
-              maxLines: 3,
-              minLines: 2,
-              autocorrect: true,
-              controller: _controllerQ,
-              decoration: const InputDecoration(
-                labelText: '質問',
-                hintText: '問題文を入力してください',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                ),
-                alignLabelWithHint: true,
-              ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              autocorrect: true,
-              controller: _controllerA,
-              decoration: const InputDecoration(
-                labelText: '回答',
-                hintText: '答えを入力してください',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            // 解説の入力欄
-            TextField(
-              maxLines: 10,
-              minLines: 5,
-              autocorrect: true,
-              controller: _controllerE,
-              decoration: const InputDecoration(
-                labelText: '解説',
-                hintText: '解説を入力してください',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                ),
-                alignLabelWithHint: true,
-              ),
-            ),
-            const SizedBox(height: 16),
-            // タグの入力欄
-            TextField(
-              autocorrect: true,
-              controller: _controllerTags,
-              decoration: const InputDecoration(
-                labelText: 'タグ',
-                hintText: 'タグ1, タグ2, タグ3（カンマ区切り）',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                ),
-                prefixIcon: Icon(Icons.label_outline),
-              ),
+            CardFormFields(
+              questionController: _controllerQ,
+              answerController: _controllerA,
+              explanationController: _controllerE,
+              tagsController: _controllerTags,
             ),
             const SizedBox(height: 32),
             // ボタン

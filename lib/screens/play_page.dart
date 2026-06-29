@@ -15,7 +15,15 @@ class _PlayPageState extends State<PlayPage> {
   bool _showAnswer = false;
 
   Future<void> _initialize() async {
-    await _controller.inisilaize();
+    await _controller.initialize();
+    if (!mounted) return;
+    if (_controller.totalQuestionCount == 0) {
+      Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('先にカードを追加してください')),
+      );
+      return;
+    }
     setState(() => _isLoading = false);
   }
 

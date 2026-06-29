@@ -1,5 +1,6 @@
 // GeminiAPIを使用するための処理を書く
 import 'dart:convert';
+import 'dart:io';
 import 'package:http/http.dart' as http;
 
 class GeminiApiService {
@@ -18,24 +19,31 @@ class GeminiApiService {
   // json形式で返されるresposeをデコードして、テキストに戻す
   Future<String> responseExample(String question, String answer) async {
     // 1. POSTリクエストを送信
-    final response = await requestExample(question, answer);
-
-    // 2. ステータスコードで判定
-    if (response.statusCode == 200) {
-      // 3. 成功時：JSONをデコードして解説文を返す
-      final decoded = jsonDecode(response.body);
-      return decoded['example'] as String;
-    } else {
-      // 失敗時：エラーメッセージがあれば拾って例外にする
-      try {
+    try {
+      final response = await requestExample(question, answer);
+      // 2. ステータスコードで判定
+      if (response.statusCode == 200) {
+        // 3. 成功時：JSONをデコードして解説文を返す
         final decoded = jsonDecode(response.body);
-        throw Exception(decoded['message'] ?? 'Failed to request.');
-      } catch (e) {
-        throw Exception(
-          'message: $e'
-          'Failed to request.'
-        );
+        return decoded['example'] as String;
+      } else {
+        // 失敗時：エラーメッセージがあれば拾って例外にする
+        try {
+          final decoded = jsonDecode(response.body);
+          throw Exception(decoded['message'] ?? 'Failed to request.');
+        } catch (e) {
+          throw Exception('message: $e. Failed to request.');
+        }
       }
+    } on SocketException {
+      // ネットワーク未接続、サーバが見つからない場合
+      throw Exception('ネットワークに接続されていません');
+    } on http.ClientException {
+      // クライアントサイトのエラー
+      throw Exception('通信エラーが発生しました');
+    } catch (e) {
+      // その他のエラー
+      throw Exception('予期せぬエラーが発生しました: $e');
     }
   }
 }

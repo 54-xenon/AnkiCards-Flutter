@@ -2,7 +2,7 @@ import 'package:ankicards/repository/resultModel.dart';
 import 'package:flutter/material.dart';
 
 class Resultpage extends StatelessWidget {
-  final resultModel result;
+  final ResultModel result;
   const Resultpage({super.key, required this.result});
 
   @override
