@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       // ローカライゼーション -> 日本語環境に最適化
-      supportedLocales: [Locale('English'), Locale('ja')],
+      supportedLocales: [Locale('en'), Locale('ja')],
       localizationsDelegates:  [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
 
       // Navbarの表示を固定するために、homeにNavbarを指定する
       home: BottomNavigation(),
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
