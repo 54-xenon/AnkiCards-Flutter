@@ -232,6 +232,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  foundation_models_framework:
+    dependency: "direct main"
+    description:
+      name: foundation_models_framework
+      sha256: b933a6850ae7dc06d3984c1a5bad4f9c6d784251ab51c4261340f2fe76ad686a
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.1"
   glob:
     dependency: transitive
     description:
