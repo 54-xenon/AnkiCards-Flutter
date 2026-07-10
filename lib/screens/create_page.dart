@@ -1,4 +1,6 @@
+import 'package:ankicards/service/afm_service.dart';
 import 'package:ankicards/service/gemini_api_service.dart';
+import 'package:ankicards/service/settings_service.dart';
 import 'package:ankicards/repository/flash_card_repository.dart';
 import 'package:ankicards/widget/card_form_fields.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,8 @@ class CreatePage extends StatefulWidget {
 
 class _CreatePageState extends State<CreatePage> {
   final GeminiApiService _geminiApiService = GeminiApiService();
+  final AfmService _afmService = AfmService();
+  final SettingsService _settingsService = SettingsService.instance;
   final TextEditingController _controllerQ = TextEditingController();
   final TextEditingController _controllerA = TextEditingController();
   final TextEditingController _controllerE = TextEditingController();
@@ -39,11 +43,12 @@ class _CreatePageState extends State<CreatePage> {
       // 生成中(true)へ値を変更
       setState(() => _isGenerating = true);
       try {
-        // 質問と回答を送る(APIを叩く)
-        final example = await _geminiApiService.responseExample(
-          _controllerQ.text,
-          _controllerA.text,
-        );
+        final provider = await _settingsService.getAiProvider();
+        final example = provider == AiProvider.afm
+            ? await _afmService.generateExample(
+                _controllerQ.text, _controllerA.text)
+            : await _geminiApiService.responseExample(
+                _controllerQ.text, _controllerA.text);
         // 上記の処理が終わると、解説欄を管理してるコントローラに生成された文字列を代入し、setState関数でWidgetを更新する
         setState(() => _controllerE.text = example);
       } catch (e) {
