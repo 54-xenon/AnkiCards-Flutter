@@ -1,22 +1,28 @@
 PODS:
   - Flutter (1.0.0)
+  - foundation_models_framework (0.2.1):
+    - Flutter
   - isar_community_flutter_libs (1.0.0):
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
+  - foundation_models_framework (from `.symlinks/plugins/foundation_models_framework/ios`)
   - isar_community_flutter_libs (from `.symlinks/plugins/isar_community_flutter_libs/ios`)
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
+  foundation_models_framework:
+    :path: ".symlinks/plugins/foundation_models_framework/ios"
   isar_community_flutter_libs:
     :path: ".symlinks/plugins/isar_community_flutter_libs/ios"
 
 SPEC CHECKSUMS:
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  foundation_models_framework: a90ae77b73bb691d63a4442ba5d64fb4d85e0d63
   isar_community_flutter_libs: bede843185a61a05ff364a05c9b23209523f7e0d
 
-PODFILE CHECKSUM: ae9e65fc23486119b8e977fd41d9213f251e537a
+PODFILE CHECKSUM: 915e58fd71f05ae99fabdd8ac2991c68108b3464
 
 COCOAPODS: 1.16.2
