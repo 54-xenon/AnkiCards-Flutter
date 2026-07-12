@@ -172,6 +172,53 @@ class _SettingPageState extends State<SettingPage> {
                 ),
               ),
             ),
+            const SizedBox(height: 24),
+            Text(
+              'アプリ情報',
+              style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    color: colorScheme.primary,
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+            const SizedBox(height: 8),
+            Card(
+              child: Column(
+                children: [
+                  ListTile(
+                    leading: Icon(Icons.info_outline, color: colorScheme.onSurfaceVariant),
+                    title: const Text('バージョン'),
+                    trailing: Text(
+                      '1.2.0',
+                      style: TextStyle(color: colorScheme.onSurfaceVariant),
+                    ),
+                  ),
+                  const Divider(height: 1, indent: 16, endIndent: 16),
+                  ListTile(
+                    leading: Icon(Icons.privacy_tip_outlined, color: colorScheme.onSurfaceVariant),
+                    title: const Text('プライバシーポリシー'),
+                    trailing: Icon(Icons.chevron_right, color: colorScheme.onSurfaceVariant),
+                    onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('準備中です')),
+                      );
+                    },
+                  ),
+                  const Divider(height: 1, indent: 16, endIndent: 16),
+                  ListTile(
+                    leading: Icon(Icons.description_outlined, color: colorScheme.onSurfaceVariant),
+                    title: const Text('ライセンス'),
+                    trailing: Icon(Icons.chevron_right, color: colorScheme.onSurfaceVariant),
+                    onTap: () {
+                      showLicensePage(
+                        context: context,
+                        applicationName: 'AnkiCards',
+                        applicationVersion: '1.2.0',
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
