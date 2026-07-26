@@ -1,3 +1,4 @@
+import 'package:ankicards/repository/flashCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
@@ -6,6 +7,7 @@ class CardContainer extends StatelessWidget {
   final String answer;
   final String explanation;
   final bool? isCorrect;
+  final List<Tag> tags;
   final Function(BuildContext) deleteCard;
   final Function(BuildContext) cardTap;
 
@@ -15,6 +17,7 @@ class CardContainer extends StatelessWidget {
     required this.answer,
     required this.explanation,
     required this.isCorrect,
+    required this.tags,
     required this.deleteCard,
     required this.cardTap,
   });
@@ -69,14 +72,31 @@ class CardContainer extends StatelessWidget {
           
                     if (explanation.isNotEmpty) ...[
                       const SizedBox(height: 8),
-                      Text(
-                        explanation,
+                      Text(explanation),
+                    ],
+
+                    if (tags.isNotEmpty) ...[
+                      const SizedBox(height: 8),
+                      Wrap(
+                        spacing: 6,
+                        runSpacing: 4,
+                        children: tags
+                            .map((tag) => Chip(
+                                  label: Text(tag.name,
+                                      style: const TextStyle(fontSize: 12)),
+                                  materialTapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
+                                  visualDensity: VisualDensity.compact,
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 4),
+                                ))
+                            .toList(),
                       ),
                     ],
                     const SizedBox(height: 12),
-          
+
                     /// 前回の結果
-                    if (isCorrect != null) 
+                    if (isCorrect != null)
                       Align(
                         alignment: Alignment.centerRight,
                         child: _ResultChip(isCorrect: isCorrect!),
