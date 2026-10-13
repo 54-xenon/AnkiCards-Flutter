@@ -1,0 +1,14 @@
+Target dependency graph (6 targets)
+Target 'Pods-RunnerTests' in project 'Pods'
+➜ Explicit dependency on target 'Pods-Runner' in project 'Pods'
+Target 'Pods-Runner' in project 'Pods'
+➜ Explicit dependency on target 'Flutter' in project 'Pods'
+➜ Explicit dependency on target 'foundation_models_framework' in project 'Pods'
+➜ Explicit dependency on target 'isar_community_flutter_libs' in project 'Pods'
+Target 'isar_community_flutter_libs' in project 'Pods'
+➜ Explicit dependency on target 'Flutter' in project 'Pods'
+➜ Explicit dependency on target 'isar_community_flutter_libs-isar_community_flutter_libs_apple_privacy' in project 'Pods'
+Target 'isar_community_flutter_libs-isar_community_flutter_libs_apple_privacy' in project 'Pods' (no dependencies)
+Target 'foundation_models_framework' in project 'Pods'
+➜ Explicit dependency on target 'Flutter' in project 'Pods'
+Target 'Flutter' in project 'Pods' (no dependencies)

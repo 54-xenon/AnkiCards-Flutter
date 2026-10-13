@@ -1,0 +1,4 @@
+
+module isar_community_flutter_libs.__Swift {
+  exclude header "isar_community_flutter_libs-Swift.h"
+}

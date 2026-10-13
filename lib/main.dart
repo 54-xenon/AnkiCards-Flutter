@@ -73,8 +73,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
     return Scaffold(
       body: _screens[_selectIndex],
       bottomNavigationBar: NavigationBar(
-        height: 60,
-        labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+        // height: 60,
+        // labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
         onDestinationSelected: (int index) {
           setState(() {
             _selectIndex = index;

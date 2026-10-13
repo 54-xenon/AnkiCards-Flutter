@@ -1,0 +1,5 @@
+ extern const unsigned char foundation_models_frameworkVersionString[];
+ extern const double foundation_models_frameworkVersionNumber;
+
+ const unsigned char foundation_models_frameworkVersionString[] __attribute__ ((used)) = "@(#)PROGRAM:foundation_models_framework  PROJECT:Pods-1" "\n";
+ const double foundation_models_frameworkVersionNumber __attribute__ ((used)) = (double)1.;

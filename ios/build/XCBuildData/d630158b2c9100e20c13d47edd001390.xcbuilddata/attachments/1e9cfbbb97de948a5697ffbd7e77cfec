@@ -1,0 +1,16 @@
+{
+  "" : {
+    "const-values" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/isar_community_flutter_libs.build/Objects-normal/arm64/isar_community_flutter_libs-primary.swiftconstvalues",
+    "dependencies" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/isar_community_flutter_libs.build/Objects-normal/arm64/isar_community_flutter_libs-primary.d",
+    "diagnostics" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/isar_community_flutter_libs.build/Objects-normal/arm64/isar_community_flutter_libs-primary.dia",
+    "emit-module-dependencies" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/isar_community_flutter_libs.build/Objects-normal/arm64/isar_community_flutter_libs-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/isar_community_flutter_libs.build/Objects-normal/arm64/isar_community_flutter_libs-primary-emit-module.dia",
+    "pch" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/isar_community_flutter_libs.build/Objects-normal/arm64/isar_community_flutter_libs-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/isar_community_flutter_libs.build/Objects-normal/arm64/isar_community_flutter_libs-primary.swiftdeps"
+  },
+  "/Users/tokuokakeito/.pub-cache/hosted/pub.dev/isar_community_flutter_libs-3.3.2/ios/Classes/SwiftIsarFlutterLibsPlugin.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/isar_community_flutter_libs.build/Objects-normal/arm64/SwiftIsarFlutterLibsPlugin.o",
+    "llvm-bc" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/isar_community_flutter_libs.build/Objects-normal/arm64/SwiftIsarFlutterLibsPlugin.bc",
+    "object" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/isar_community_flutter_libs.build/Objects-normal/arm64/SwiftIsarFlutterLibsPlugin.o"
+  }
+}

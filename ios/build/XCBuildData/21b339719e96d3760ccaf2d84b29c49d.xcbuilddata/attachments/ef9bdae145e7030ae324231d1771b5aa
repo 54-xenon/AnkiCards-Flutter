@@ -1,0 +1,4 @@
+
+module foundation_models_framework.__Swift {
+  exclude header "foundation_models_framework-Swift.h"
+}

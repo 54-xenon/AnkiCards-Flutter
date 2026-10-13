@@ -1,0 +1,3 @@
+#!/bin/sh
+"${PODS_ROOT}/Target Support Files/isar_community_flutter_libs/isar_community_flutter_libs-xcframeworks.sh"
+

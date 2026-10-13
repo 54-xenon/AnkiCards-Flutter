@@ -1,0 +1,23 @@
+{
+  "version": 0,
+  "use-external-names": false,
+  "case-sensitive": false,
+  "roots": [{
+    "type": "directory",
+    "name": "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Release-iphoneos/foundation_models_framework/foundation_models_framework.framework/Modules",
+    "contents": [{
+      "type": "file",
+      "name": "module.modulemap",
+      "external-contents": "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/foundation_models_framework.build/unextended-module.modulemap",
+    }]
+    },
+    {
+    "type": "directory",
+    "name": "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Release-iphoneos/foundation_models_framework/foundation_models_framework.framework/Headers",
+    "contents": [{
+      "type": "file",
+      "name": "foundation_models_framework-Swift.h",
+      "external-contents": "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/foundation_models_framework.build/unextended-interface-header.h",
+    }]
+  }]
+}

@@ -44,6 +44,12 @@ dependencies:
   flutter_slidable: ^4.0.3
   http: ^1.6.0
 
+# foundation_models_framework 0.2.1 は Xcode 27 (iOS 27 SDK) でビルドできないため、
+# @unknown default を追加したローカルコピーを使う。公式修正版が出たら削除する。
+dependency_overrides:
+  foundation_models_framework:
+    path: packages/foundation_models_framework
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

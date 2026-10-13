@@ -1,0 +1,31 @@
+{
+  "" : {
+    "const-values" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/foundation_models_framework.build/Objects-normal/arm64/foundation_models_framework-primary.swiftconstvalues",
+    "dependencies" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/foundation_models_framework.build/Objects-normal/arm64/foundation_models_framework-primary.d",
+    "diagnostics" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/foundation_models_framework.build/Objects-normal/arm64/foundation_models_framework-primary.dia",
+    "emit-module-dependencies" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/foundation_models_framework.build/Objects-normal/arm64/foundation_models_framework-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/foundation_models_framework.build/Objects-normal/arm64/foundation_models_framework-primary-emit-module.dia",
+    "pch" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/foundation_models_framework.build/Objects-normal/arm64/foundation_models_framework-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/foundation_models_framework.build/Objects-normal/arm64/foundation_models_framework-primary.swiftdeps"
+  },
+  "/Users/tokuokakeito/dev/flutter-app/ankicards/packages/foundation_models_framework/ios/Classes/FoundationModelsApi.g.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/foundation_models_framework.build/Objects-normal/arm64/FoundationModelsApi.g.o",
+    "llvm-bc" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/foundation_models_framework.build/Objects-normal/arm64/FoundationModelsApi.g.bc",
+    "object" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/foundation_models_framework.build/Objects-normal/arm64/FoundationModelsApi.g.o"
+  },
+  "/Users/tokuokakeito/dev/flutter-app/ankicards/packages/foundation_models_framework/ios/Classes/FoundationModelsFrameworkPlugin.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/foundation_models_framework.build/Objects-normal/arm64/FoundationModelsFrameworkPlugin-c367e908aeee803d8127d75e670df67e.o",
+    "llvm-bc" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/foundation_models_framework.build/Objects-normal/arm64/FoundationModelsFrameworkPlugin-c367e908aeee803d8127d75e670df67e.bc",
+    "object" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/foundation_models_framework.build/Objects-normal/arm64/FoundationModelsFrameworkPlugin-c367e908aeee803d8127d75e670df67e.o"
+  },
+  "/Users/tokuokakeito/dev/flutter-app/ankicards/packages/foundation_models_framework/ios/Classes/SecurityManager.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/foundation_models_framework.build/Objects-normal/arm64/SecurityManager.o",
+    "llvm-bc" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/foundation_models_framework.build/Objects-normal/arm64/SecurityManager.bc",
+    "object" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/foundation_models_framework.build/Objects-normal/arm64/SecurityManager.o"
+  },
+  "/Users/tokuokakeito/dev/flutter-app/ankicards/packages/foundation_models_framework/ios/Classes/SessionManager.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/foundation_models_framework.build/Objects-normal/arm64/SessionManager.o",
+    "llvm-bc" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/foundation_models_framework.build/Objects-normal/arm64/SessionManager.bc",
+    "object" : "/Users/tokuokakeito/dev/flutter-app/ankicards/ios/build/Pods.build/Release-iphoneos/foundation_models_framework.build/Objects-normal/arm64/SessionManager.o"
+  }
+}
